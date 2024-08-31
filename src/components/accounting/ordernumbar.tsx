@@ -1,9 +1,13 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
-const ordernumbar = () => {
+const Ordernumbar = () => {
   return (
-    <div>ordernumbar</div>
+    <>
+    <Box>ご注文番号</Box>
+    <Box>132</Box>
+    </>
   )
 }
 
-export default ordernumbar
+export default Ordernumbar

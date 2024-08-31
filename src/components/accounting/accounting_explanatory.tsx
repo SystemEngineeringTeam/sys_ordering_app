@@ -1,9 +1,14 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
-const accounting_explanatory = () => {
+const Accounting_explanatory = () => {
   return (
-    <div>accounting_explanatory</div>
+    <>
+    <Box>予約ありがとうございます。</Box>
+    <Box>この画面をこの画面を店員に見せて,</Box>
+    <Box>会計を済ませてください。</Box>
+    </>
   )
 }
 
-export default accounting_explanatory
+export default Accounting_explanatory
