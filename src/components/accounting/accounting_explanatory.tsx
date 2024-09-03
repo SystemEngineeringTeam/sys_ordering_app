@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
 
-const Accounting_explanatory = () => {
+const AccountingExplanatory = () => {
   return (
     <>
     <Box sx={{height: "100px"}}></Box>
@@ -13,4 +13,4 @@ const Accounting_explanatory = () => {
   )
 }
 
-export default Accounting_explanatory
+export default AccountingExplanatory
