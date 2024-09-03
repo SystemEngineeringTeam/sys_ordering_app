@@ -6,9 +6,9 @@ import Precautions from './components/accounting/precautions';
 const App = () => {
   return (
     <>
-    <AccountingExplanatory />
-    <Ordernumbar />
-    <Precautions />
+      <AccountingExplanatory />
+      <Ordernumbar />
+      <Precautions />
     </>
   );
 };
