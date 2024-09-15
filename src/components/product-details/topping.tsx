@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Topping = () => {
-  return (
-    <div>topping</div>
-  )
-}
+  return <div>topping</div>;
+};
 
-export default Topping
+export default Topping;

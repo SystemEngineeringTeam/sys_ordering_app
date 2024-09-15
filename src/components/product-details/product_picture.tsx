@@ -1,8 +1,8 @@
-import { Box, Card, IconButton, CardMedia } from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close'
-import React from 'react'
+import { Box, Card, IconButton, CardMedia } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import React from 'react';
 
-const Product_picture = () => {
+const ProductPicture = () => {
   return (
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -12,15 +12,10 @@ const Product_picture = () => {
         </IconButton>
       </Box>
       <Card>
-        <CardMedia
-          component="img"
-          height="200"
-          image="/karaage.jpg"
-
-        />
+        <CardMedia component="img" height="200" image="/karaage.jpg" />
       </Card>
     </>
-  )
-}
+  );
+};
 
-export default Product_picture
+export default ProductPicture;
