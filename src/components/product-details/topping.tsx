@@ -1,9 +1,9 @@
 import React from 'react'
 
-const topping = () => {
+const Topping = () => {
   return (
     <div>topping</div>
   )
 }
 
-export default topping
+export default Topping
