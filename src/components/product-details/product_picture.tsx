@@ -12,7 +12,12 @@ const ProductPicture = () => {
         </IconButton>
       </Box>
       <Card>
-        <CardMedia component="img" height="200" image="/karaage.jpg" />
+        <CardMedia
+          component="img"
+          height="200"
+          image="/karaage.jpg"
+          sx={{ maxWidth: '300px', margin: 'auto' }}
+        />
       </Card>
     </>
   );
