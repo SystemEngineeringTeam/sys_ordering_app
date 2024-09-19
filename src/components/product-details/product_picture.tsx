@@ -15,7 +15,7 @@ const ProductPicture = () => {
         <CardMedia
           component="img"
           height="200"
-          image="/karaage.jpg"
+          image="/2302_03_karaage_01.jpg"
           sx={{ maxWidth: '300px', margin: 'auto' }}
         />
       </Card>
