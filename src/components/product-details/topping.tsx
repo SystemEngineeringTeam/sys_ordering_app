@@ -8,49 +8,49 @@ const Topping = () => {
       <Stack divider={<Divider />} spacing={2}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ flexGrow: 1 }}>チーズ(+100円)</Box>
-          <Button 
-            variant="contained" 
-            size="small" 
-            sx={{ 
-              bgcolor: 'gray', 
-              color: 'white', 
+          <Button
+            size="small"
+            sx={{
+              bgcolor: 'gray',
+              color: 'white',
               borderRadius: '50px',
               '&:hover': { bgcolor: 'darkgray' },
-              minWidth: '60px', 
-              display: 'flex',   
-              justifyContent: 'center',  
-              alignItems: 'center',     
+              minWidth: '60px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
+            variant="contained"
           >
             なし
           </Button>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ flexGrow: 1 }}>マヨネーズ</Box>
-          <Button 
-            variant="contained" 
-            size="small" 
-            sx={{ 
-              bgcolor: 'gray', 
-              color: 'white', 
+          <Button
+            size="small"
+            sx={{
+              bgcolor: 'gray',
+              color: 'white',
               borderRadius: '50px',
-              '&:hover': { bgcolor: 'darkgray' } 
+              '&:hover': { bgcolor: 'darkgray' },
             }}
+            variant="contained"
           >
             なし
           </Button>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box sx={{ flexGrow: 1 }}>ケチャップ</Box>
-          <Button 
-            variant="contained" 
-            size="small" 
-            sx={{ 
-              bgcolor: 'gray', 
-              color: 'white', 
+          <Button
+            size="small"
+            sx={{
+              bgcolor: 'gray',
+              color: 'white',
               borderRadius: '50px',
-              '&:hover': { bgcolor: 'darkgray' } 
+              '&:hover': { bgcolor: 'darkgray' },
             }}
+            variant="contained"
           >
             なし
           </Button>
