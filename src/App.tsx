@@ -6,6 +6,7 @@ import Topping from './components/product-details/topping';
 const App = () => {
   return (
     <>
+
       <ProductPicture />
       <Topping />
       <ProductAmount />
