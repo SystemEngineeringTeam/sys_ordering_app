@@ -1,15 +1,15 @@
 import './App.css';
-import Ordernumbar from './components/accounting/ordernumbar';
-import Precautions from './components/accounting/precautions';
-import WaitingPeople from './components/accounting/waiting_people';
+import ProductAmount from './components/product-details/product_amount';
+import ProductPicture from './components/product-details/product_picture';
+import Topping from './components/product-details/topping';
 
 const App = () => {
   return (
     <>
-      {/* <AccountingExplanatory */}
-      <WaitingPeople />
-      <Ordernumbar />
-      <Precautions />
+
+      <ProductPicture />
+      <Topping />
+      <ProductAmount />
     </>
   );
 };
