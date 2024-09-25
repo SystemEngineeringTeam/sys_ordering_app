@@ -1,6 +1,5 @@
-import { Box, Card, IconButton, CardMedia } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import React from 'react';
+import { Box, Card, CardMedia, IconButton } from '@mui/material';
 
 const ProductPicture = () => {
   return (

@@ -1,16 +1,18 @@
-import './App.css';
-import ProductAmount from './components/product-details/product_amount';
-import ProductPicture from './components/product-details/product_picture';
-import Topping from './components/product-details/topping';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import BeforeAccountin from './pages/BeforeAccounting';
+import WaitingReceive from './pages/WaitingReceive';
+import Home from './pages/Home';
 
 const App = () => {
   return (
-    <>
-
-      <ProductPicture />
-      <Topping />
-      <ProductAmount />
-    </>
+    <Router>
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<BeforeAccountin />} path="/beforeaccountin" />
+        <Route element={<WaitingReceive />} path="/waitingreceive" />
+        <Route element={<div>Not Found</div>} path="*" />
+      </Routes>
+    </Router>
   );
 };
 
