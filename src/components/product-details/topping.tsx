@@ -1,6 +1,8 @@
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React from 'react';
 
+const ToppingName = ["チーズ", "マヨネーズ", "ケチャップ"];
+const ToppingPrice = [100, 0, 0];
 const Topping = () => {
   return (
     <Stack spacing={2} sx={{ maxWidth: '90%', margin: '0 auto' }}>
