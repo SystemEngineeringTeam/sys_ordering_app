@@ -1,0 +1,1 @@
+const useItem = (id: string) => {};
