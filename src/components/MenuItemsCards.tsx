@@ -1,21 +1,16 @@
-import React, { ReactNode } from 'react';
-import type { Item } from './Item';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 
-type MenuItemsCardsProps = {
-    src: Array<Item>,
-    children: (i: Item) => ReactNode
+const MenuItemsCards = () => {
+  return (
+    <div>
+      <Card sx={{ height: '300', width: '300' }}>
+        <Box>商品１</Box>
+        <CardMedia image="./public/img/1.jpg" sx={{ height: '20px', width: '20px' }} title="one" />
+        <Box>100円～</Box>
+      </Card>
+    </div>
+  );
 };
-
-export default function MenuItemsCards({ src, children }: MenuItemsCardsProps) {
-    return (
-        <dl>
-        {
-        src.map(elem => (
-        <React.Fragment key= {elem.itemname}>
-           {children(elem)}
-        </React.Fragment>
-         ))
-        }
-        </dl>
-    );
-}
+export default MenuItemsCards;

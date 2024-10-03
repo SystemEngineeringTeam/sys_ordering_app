@@ -1,5 +1,5 @@
-export type Item = {
-    itemname: string,
-    imgpath: string,
-    price: number,
-};
+export interface Item {
+  itemname: string;
+  imgpath: string;
+  price: number;
+}

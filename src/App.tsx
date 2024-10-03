@@ -1,7 +1,12 @@
 import './App.css';
+import MenuItemsContainer from './components/MenuItemsContainer';
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <MenuItemsContainer />
+    </div>
+  );
 };
 
 export default App;
