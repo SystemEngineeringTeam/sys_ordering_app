@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -29,3 +29,14 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 export { db, auth, googleProvider, storage };
+
+export default function converter<T>() {
+  return {
+    toFirestore: (data: PartialWithFieldValue<T>) => data,
+    fromFirestore: (snap: QueryDocumentSnapshot) => snap.data() as T,
+  };
+}
+
+export const user = {
+  uid: 'SysPay',
+};
