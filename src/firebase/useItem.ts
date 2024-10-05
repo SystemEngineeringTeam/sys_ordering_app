@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { db, user } from './firebase';
 import { useOptions } from './useOptions';
 
-
 export const useItem = () => {
   //     const user = useAtomValue(userAtom);
   //   if (!user) {
@@ -71,7 +70,5 @@ export const useItem = () => {
     };
   }, []);
 
-  return {
-    items,
-  };
+  return items;
 };
