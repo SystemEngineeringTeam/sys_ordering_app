@@ -3,6 +3,7 @@ import converter, { db, user } from './firebase';
 import { category } from '@/types/type';
 import { useEffect, useState } from 'react';
 
+// category のデータをリアルタイムで取得する関数
 export const getCategory = () => {
   const [category, setCategory] = useState<category[]>([]);
 
@@ -11,8 +12,6 @@ export const getCategory = () => {
   // if (!user) {
   //   throw new Error('User is not logged in');
   // }
-
-
 
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
