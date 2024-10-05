@@ -1,13 +1,11 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Card, CardMedia, IconButton } from '@mui/material';
-import { useState } from 'react';
 
 interface ProductPictureProps {
   iconClose: () => void;
 }
 
 const ProductPicture = ({ iconClose }: ProductPictureProps) => {
-
   return (
     <>
       <Box

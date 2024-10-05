@@ -1,4 +1,4 @@
-import { Delete } from '@mui/icons-material';
+import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React from 'react';
@@ -6,15 +6,20 @@ import React from 'react';
 interface ProductAmountProps {
   qty: number;
   setQty: React.Dispatch<React.SetStateAction<number>>;
+  onClose: () => void;
 }
 
-const ProductAmount = ({ qty, setQty }: ProductAmountProps) => {
+const ProductAmount = ({ qty, setQty, onClose }: ProductAmountProps) => {
   const qtyAdd = () => {
     setQty(qty + 1);
   };
 
   const qtySubtraction = () => {
-    setQty(qty - 1);
+    if (qty > 1) {
+      setQty(qty - 1);
+    } else {
+      onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
+    }
   };
 
   return (
@@ -35,7 +40,12 @@ const ProductAmount = ({ qty, setQty }: ProductAmountProps) => {
             padding: '6px',
           }}
         >
-          <Delete sx={{ color: 'gray', fontSize: '28px' }} />
+          {/* 1より大きかったらマイナスのアイコンにする */}
+          {qty > 1 ? (
+            <Remove sx={{ color: 'gray', fontSize: '28px' }} />
+          ) : (
+            <Delete sx={{ color: 'gray', fontSize: '28px' }} />
+          )}
         </IconButton>
         {/* 商品の個数 */}
         <Box sx={{ fontSize: '20px' }}>{qty}</Box>
