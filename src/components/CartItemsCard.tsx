@@ -13,7 +13,7 @@ const CartItemsCard = () => {
           </Box>
           <Box sx={{ textAlign: 'right', fontSize: '0.8rem' }}>個数：１</Box>
         </Box>
-        <Box sx={{ width: '20%' }}>
+        <Box sx={{ width: '25%' }}>
           <CardMedia image="./public/img/1.jpg" sx={{ width: '100%', aspectRatio: '1', margin: 'auto' }} title="one" />
           <Box sx={{ textAlign: 'center', fontSize: '1rem' }}>100円</Box>
         </Box>

@@ -1,8 +1,9 @@
 import Box from '@mui/material/Box';
-// import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import AppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
 import CartItemsCard from './CartItemsCard';
 import Button from '@mui/material/Button';
-import AppBar from '@mui/material/AppBar';
 
 const CartItemsList = () => {
   return (
@@ -14,25 +15,30 @@ const CartItemsList = () => {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
+          flexDirection: 'row',
           padding: '3%',
           borderBottom: '1px solid',
         }}
       >
-        {/* <a onClick={() => this.props.history.goBack()}> */}
-        {/* <KeyboardBackspaceIcon /> */}
-        {/* </a> */}
+        <Box sx={{ position: 'absolute', top: '4%', left: '2%' }}>
+          <IconButton onClick={() => this.props.history.goBack()}>
+            <ArrowBackIosIcon fontSize="large" />
+          </IconButton>
+        </Box>
+
         <Box sx={{ fontSize: '1.5rem' }}>ご注文内容の確認</Box>
       </AppBar>
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <CartItemsCard />
-      <Box position="sticky">
+      <Box sx={{ pb: '120px' }}>
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+        <CartItemsCard />
+      </Box>
+      <Box position="fixed">
         <AppBar color="inherit" enableColorOnDark sx={{ padding: '4%', top: 'auto', bottom: '0' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{ fontSize: '1.1rem' }}>合計２個</Box>
