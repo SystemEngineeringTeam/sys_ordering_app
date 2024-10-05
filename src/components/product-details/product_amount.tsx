@@ -7,9 +7,10 @@ interface ProductAmountProps {
   qty: number;
   setQty: React.Dispatch<React.SetStateAction<number>>;
   onClose: () => void;
+  price: number;
 }
 
-const ProductAmount = ({ qty, setQty, onClose }: ProductAmountProps) => {
+const ProductAmount = ({ qty, setQty, onClose, price }: ProductAmountProps) => {
   const qtyAdd = () => {
     setQty(qty + 1);
   };
@@ -20,6 +21,11 @@ const ProductAmount = ({ qty, setQty, onClose }: ProductAmountProps) => {
     } else {
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
+  };
+
+  // 合計金額の計算
+  const calculateTotalPrice = () => {
+    return price * qty;
   };
 
   return (
@@ -60,8 +66,9 @@ const ProductAmount = ({ qty, setQty, onClose }: ProductAmountProps) => {
         >
           <AddCircleIcon sx={{ color: 'gray', fontSize: '28px' }} />
         </IconButton>
+        {/* 商品の値段 */}
         <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ fontSize: 25, paddingRight: 5 }}>9,999円</Box>
+        <Box sx={{ fontSize: 25, paddingRight: 5 }}>{calculateTotalPrice()}円</Box>
       </Stack>
       <Button
         sx={{

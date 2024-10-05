@@ -17,6 +17,8 @@ const Test = () => {
 
   const [qty, setQty] = useState(1);
 
+  const [price] = useState(1999);
+
   return (
     <>
       <Button color="primary" onClick={handleOpen} variant="contained">
@@ -30,7 +32,7 @@ const Test = () => {
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture iconClose={iconClose} />
               <Topping />
-              <ProductAmount onClose={iconClose} qty={qty} setQty={setQty} />
+              <ProductAmount onClose={iconClose} price={price} qty={qty} setQty={setQty} />
             </CardContent>
           </Card>
         </DialogContent>
