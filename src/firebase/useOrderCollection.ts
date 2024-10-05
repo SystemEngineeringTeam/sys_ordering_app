@@ -3,7 +3,7 @@ import { addDoc, collection, doc, runTransaction, setDoc } from 'firebase/firest
 import converter, { db, user } from './firebase';
 
 //注文情報を追加する関数
-export const setOrderCollection = async (orderData: orderData) => {
+export const setOrderCollection = async (orderData: orderData[]) => {
   const uid = user.uid;
   try {
     //   トランザクションを実行して、新しいドキュメントIDを取得
@@ -44,7 +44,9 @@ export const setOrderCollection = async (orderData: orderData) => {
     //サブコレクションに注文情報を追加
     const orderRef = collection(orderCollectionRef, 'order').withConverter(converter<order>());
 
-    await addDoc(orderRef, orderData);
+    orderData.forEach(async (data) => {
+      await addDoc(orderRef, data);
+    });
   } catch (error) {
     console.error('Error adding document: ', error);
   }

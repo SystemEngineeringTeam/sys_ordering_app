@@ -1,8 +1,33 @@
-import { orderData } from '@/types/type';
+import { cartData, orderData } from '@/types/type';
 import { collection } from 'firebase/firestore';
 import { db, user } from './firebase';
+import { options } from '../types/type';
+
+// 仮置き
+const itemData1 = {
+  itemId: '1',
+  options: ['1', '3'],
+  qty: 1,
+};
+
+const itemData2 = {
+  itemId: '2',
+  options: ['2', '4'],
+  qty: 2,
+};
+
+const cart: cartData[] = [itemData1, itemData2];
 
 // 注文情報を作成する関数
+
+export const processingCart = (cart: any) => {
+  const orderData = cart.map((item: any) => {
+    const orderData = createOrderData(item.itemId, item.options, item.qty);
+    return orderData;
+  });
+  return orderData;
+};
+
 export const createOrderData = (itemId: string, optionId: string[], qty: number) => {
   const itemRef = collection(db, 'shop_user', user.uid, 'item', itemId);
 
