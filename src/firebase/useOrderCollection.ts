@@ -1,10 +1,10 @@
-import { order, orderCollection, orderData } from '@/types/type';
+import { type order, type orderCollection, type orderData } from '@/types/type';
 import { addDoc, collection, doc, runTransaction, setDoc } from 'firebase/firestore';
 import converter, { db, user } from './firebase';
 
-//注文情報を追加する関数
+// 注文情報を追加する関数
 export const setOrderCollection = async (orderData: orderData[]) => {
-  const uid = user.uid;
+  const { uid } = user;
   try {
     //   トランザクションを実行して、新しいドキュメントIDを取得
     const newDocID = await runTransaction(db, async (transaction) => {
@@ -31,17 +31,17 @@ export const setOrderCollection = async (orderData: orderData[]) => {
       converter<orderCollection>(),
     );
 
-    //現在の時間をミリ秒で取得
+    // 現在の時間をミリ秒で取得
     const timestamp = new Date().getTime();
 
     await setDoc(orderCollectionRef, {
       accounting: false,
       cooking: false,
       offer: false,
-      timestamp: timestamp,
+      timestamp,
     });
 
-    //サブコレクションに注文情報を追加
+    // サブコレクションに注文情報を追加
     const orderRef = collection(orderCollectionRef, 'order').withConverter(converter<order>());
 
     orderData.forEach(async (data) => {

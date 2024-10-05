@@ -1,7 +1,6 @@
-import { cartData, orderData } from '@/types/type';
+import { type cartData, type orderData } from '@/types/type';
 import { collection } from 'firebase/firestore';
 import { db, user } from './firebase';
-import { options } from '../types/type';
 
 // 仮置き
 const itemData1 = {
@@ -38,7 +37,7 @@ export const createOrderData = (itemId: string, optionId: string[], qty: number)
   const orderData: orderData = {
     item: itemRef,
     options: optionsRef,
-    qty: qty,
+    qty,
   };
 
   return orderData;

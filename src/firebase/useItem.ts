@@ -1,4 +1,4 @@
-import { items } from '@/types/type';
+import { type items } from '@/types/type';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db, user } from './firebase';

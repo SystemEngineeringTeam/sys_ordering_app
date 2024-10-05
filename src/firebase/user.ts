@@ -1,5 +1,5 @@
-import { developer } from '@/types/type';
-import { User } from 'firebase/auth';
+import { type developer } from '@/types/type';
+import { type User } from 'firebase/auth';
 import { atom } from 'jotai';
 import { loadable } from 'jotai/utils';
 

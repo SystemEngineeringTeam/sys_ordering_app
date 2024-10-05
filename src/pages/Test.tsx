@@ -4,10 +4,14 @@ import Topping from '@/components/product-details/topping';
 import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
 
-const Test = () => {
+interface Props {
+  itemId: String;
+}
+
+const Test = ({ itemId }: Props) => {
   const [open, setOpen] = useState(false);
   const [qty, setQty] = useState(1);
-  const [price,setPrice] = useState(1999);
+  const [price, setPrice] = useState(1999);
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,7 +34,7 @@ const Test = () => {
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture iconClose={iconClose} />
               <Topping />
-              <ProductAmount onClose={iconClose} price={price} setPrice={setPrice} qty={qty} setQty={setQty} />
+              <ProductAmount onClose={iconClose} price={price} qty={qty} setPrice={setPrice} setQty={setQty} />
             </CardContent>
           </Card>
         </DialogContent>

@@ -1,6 +1,6 @@
 import { collection, onSnapshot } from 'firebase/firestore';
 import converter, { db, user } from './firebase';
-import { category } from '@/types/type';
+import { type category } from '@/types/type';
 import { useEffect, useState } from 'react';
 
 // category のデータをリアルタイムで取得する関数
