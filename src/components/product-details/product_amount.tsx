@@ -1,16 +1,19 @@
 import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface ProductAmountProps {
   qty: number;
   setQty: React.Dispatch<React.SetStateAction<number>>;
   onClose: () => void;
   price: number;
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ProductAmount = ({ qty, setQty, onClose, price }: ProductAmountProps) => {
+const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountProps) => {
+  const itemPrice = 100;
+
   const qtyAdd = () => {
     setQty(qty + 1);
   };
@@ -23,10 +26,10 @@ const ProductAmount = ({ qty, setQty, onClose, price }: ProductAmountProps) => {
     }
   };
 
-  // 合計金額の計算
-  const calculateTotalPrice = () => {
-    return price * qty;
-  };
+  // 商品の値段を計算
+  useEffect(() => {
+    setPrice(qty * itemPrice);
+  }, [qty]);
 
   return (
     <>
@@ -68,7 +71,7 @@ const ProductAmount = ({ qty, setQty, onClose, price }: ProductAmountProps) => {
         </IconButton>
         {/* 商品の値段 */}
         <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ fontSize: 25, paddingRight: 5 }}>{calculateTotalPrice()}円</Box>
+        <Box sx={{ fontSize: 25, paddingRight: 5 }}>{price}円</Box>
       </Stack>
       <Button
         sx={{

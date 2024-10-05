@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 const Test = () => {
   const [open, setOpen] = useState(false);
+  const [qty, setQty] = useState(1);
+  const [price,setPrice] = useState(1999);
 
   const handleOpen = () => {
     setOpen(true);
@@ -14,10 +16,6 @@ const Test = () => {
   const iconClose = () => {
     setOpen(false);
   };
-
-  const [qty, setQty] = useState(1);
-
-  const [price] = useState(1999);
 
   return (
     <>
@@ -32,7 +30,7 @@ const Test = () => {
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture iconClose={iconClose} />
               <Topping />
-              <ProductAmount onClose={iconClose} price={price} qty={qty} setQty={setQty} />
+              <ProductAmount onClose={iconClose} price={price} setPrice={setPrice} qty={qty} setQty={setQty} />
             </CardContent>
           </Card>
         </DialogContent>
