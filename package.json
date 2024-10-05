@@ -11,10 +11,10 @@
     "lint": "eslint --ext .ts,.tsx ./src --fix"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.6",
-    "@mui/material": "^5.16.6",
+    "@mui/material": "^6.1.2",
     "eslint-plugin-prettier": "^5.2.1",
     "firebase": "^10.12.5",
     "jotai": "^2.9.2",
