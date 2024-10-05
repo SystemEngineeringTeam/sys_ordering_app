@@ -30,7 +30,7 @@ const Test = () => {
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture iconClose={iconClose} />
               <Topping />
-              <ProductAmount qty={qty} setQty={setQty} onClose={iconClose} />
+              <ProductAmount onClose={iconClose} qty={qty} setQty={setQty} />
             </CardContent>
           </Card>
         </DialogContent>
