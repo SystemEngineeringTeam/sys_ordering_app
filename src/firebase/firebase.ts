@@ -24,11 +24,11 @@ const db = getFirestore(app);
 // ストレージの準備
 const storage = getStorage(app);
 // 認証オブジェクトの準備
-const auth = getAuth(app);
-// Google認証プロバイダの準備
-const googleProvider = new GoogleAuthProvider();
+// const auth = getAuth(app);
+// // Google認証プロバイダの準備
+// const googleProvider = new GoogleAuthProvider();
 
-export { db, auth, googleProvider, storage };
+export { db, storage };
 
 export default function converter<T>() {
   return {
@@ -38,5 +38,5 @@ export default function converter<T>() {
 }
 
 export const user = {
-  uid: 'SysPay',
+  uid: 'sysPay00',
 };

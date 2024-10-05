@@ -1,26 +1,20 @@
-import { type items } from '@/types/type';
-import { collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { db, user } from './firebase';
 import { useOptions } from './useOptions';
+import { collection, onSnapshot } from 'firebase/firestore';
+import converter, { db, user } from './firebase';
+import { items } from '@/types/type';
 
-export const useItem = () => {
-  //     const user = useAtomValue(userAtom);
-  //   if (!user) {
-  //     throw new Error('User is not logged in');
-  //   }
-
+export function useItem() {
   const [items, setItems] = useState<items[] | null>(null);
 
-  const colRef = collection(db, 'shop_user', user.uid, 'item');
+  const colRef = collection(db, 'shop_user', user.uid, 'item').withConverter(converter<items>());
+  const optionData = useOptions(); // カスタムフックの使用
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
-      snapshot.docChanges().forEach(async (change) => {
+      snapshot.docChanges().forEach((change) => {
         const docSnapshot = change.doc;
         const Docdata = docSnapshot.data();
-
-        const optionData = useOptions();
 
         const newData: items = {
           id: docSnapshot.id,
@@ -28,31 +22,26 @@ export const useItem = () => {
           category_id: Docdata.category_id as string,
           price: Docdata.price as number,
           visible: Docdata.visible as boolean,
-          options: optionData.options,
+          options: optionData.options, // フックの結果をここで使用
           imgUrl: Docdata.imgUrl as string,
         };
 
-        // 追加時
         if (change.type === 'added') {
           setItems((prevData) => [...(prevData || []), newData]);
         }
 
-        // 修正（更新時）
         if (change.type === 'modified') {
           setItems((prevData) => {
-            if (prevData) {
-              return prevData.map((data) => {
-                if (data.id === docSnapshot.id) {
-                  return newData;
-                }
-                return data;
-              });
-            }
-            return prevData;
+            if (!prevData) return prevData;
+            return prevData.map((data) => {
+              if (data.id === docSnapshot.id) {
+                return newData;
+              }
+              return data;
+            });
           });
         }
 
-        // 完全削除時
         if (change.type === 'removed') {
           setItems((prevData) => {
             if (prevData) {
@@ -63,12 +52,13 @@ export const useItem = () => {
         }
       });
     });
-    console.log('itemChange');
 
     return () => {
       unsub();
     };
   }, []);
 
+  console.log(items);
+
   return items;
-};
+}

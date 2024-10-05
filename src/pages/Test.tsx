@@ -6,15 +6,15 @@ import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material'
 import { useState } from 'react';
 
 interface Props {
-  itemId: string; 
+  itemId: string;
 }
 
 const Test = ({ itemId }: Props) => {
   const [open, setOpen] = useState(false);
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(1999);
+  // 商品情報を取得
   const currentItem = ProductItems(itemId);
-
 
   const handleOpen = () => {
     setOpen(true);
