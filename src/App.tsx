@@ -11,7 +11,7 @@ const App = () => {
         <Route element={<Home />} path="/" />
         <Route element={<BeforeAccountin />} path="/beforeaccountin" />
         <Route element={<WaitingReceive />} path="/waitingreceive" />
-        <Route element={<Test />} path="/test" />
+        <Route element={<Test itemId='1'/>} path="/test" />
         <Route element={<div>Not Found</div>} path="*" />
       </Routes>
     </Router>
