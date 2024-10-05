@@ -1,7 +1,13 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Card, CardMedia, IconButton } from '@mui/material';
+import { useState } from 'react';
 
-const ProductPicture = () => {
+interface ProductPictureProps {
+  iconClose: () => void;
+}
+
+const ProductPicture = ({ iconClose }: ProductPictureProps) => {
+
   return (
     <>
       <Box
@@ -14,7 +20,7 @@ const ProductPicture = () => {
         }}
       >
         <Box>唐揚げ</Box>
-        <IconButton aria-label="close">
+        <IconButton aria-label="close" onClick={iconClose}>
           <CloseIcon />
         </IconButton>
       </Box>
