@@ -1,5 +1,5 @@
 import './App.css';
-import CartItemsList from './components/CartItemsList';
+import CartItemsList from './components/cartscrean/CartItemsList';
 
 const App = () => {
   return (

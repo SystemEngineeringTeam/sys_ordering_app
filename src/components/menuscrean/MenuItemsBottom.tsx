@@ -14,19 +14,16 @@ export default function MenuItemsBottom() {
     bottom: false,
   });
 
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
+  const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
 
-      setState({ ...state, [anchor]: open });
-    };
+    setState({ ...state, [anchor]: open });
+  };
 
   const list = (anchor: Anchor) => (
     <Box
@@ -66,18 +63,19 @@ export default function MenuItemsBottom() {
             </Badge>
             <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>1200円</Box>
           </Box>
-          <Button onClick={toggleDrawer('bottom', true)} sx={{ margin: '3px', fontWeight: 'bold' }} variant="contained" color="warning">
+          <Button
+            onClick={toggleDrawer('bottom', true)}
+            sx={{ margin: '3px', fontWeight: 'bold' }}
+            variant="contained"
+            color="warning"
+          >
             カートを見る
           </Button>
-          <Drawer
-  anchor='bottom'
-  open={state.bottom}
-  onClose={toggleDrawer('bottom', false)}
->
-  {list('bottom')}
-</Drawer>
+          <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
+            {list('bottom')}
+          </Drawer>
         </AppBar>
       </Box>
     </div>
   );
-};
+}
