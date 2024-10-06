@@ -110,7 +110,7 @@ const ProductAmount = ({
           margin: '0 auto',
           marginTop: 2,
           borderRadius: '20px',
-          width: '40%',
+          width: '55%',
           maxWidth: '250px',
           padding: '6px 16px',
         }}
