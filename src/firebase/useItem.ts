@@ -1,4 +1,4 @@
-import { items, options } from '@/types/type';
+import { type items, type options } from '@/types/type';
 import { collection, DocumentReference, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import converter, { db, user } from './firebase';
@@ -46,19 +46,21 @@ export function useItem() {
       setItems(updatedItems);
     });
 
-    return () => unsub();
+    return () => {
+      unsub();
+    };
   }, []);
 
   // オプションデータをリアルタイムで取得する
-  const fetchOptionsRealtime = (optionsArry: any[]) => {
+  const fetchOptionsRealtime = async (optionsArry: any[]) => {
     // optionsArry の中身が DocumentReference かどうかをチェック
     const validOptionRefs = optionsArry.filter(
       (optionRef): optionRef is DocumentReference => optionRef instanceof DocumentReference,
     );
 
-    if (!validOptionRefs.length) return Promise.resolve([]);
+    if (validOptionRefs.length === 0) return await Promise.resolve([]);
 
-    return new Promise<options[]>((resolve) => {
+    return await new Promise<options[]>((resolve) => {
       const allOptions: options[] = [];
       const unsubscribes = validOptionRefs.map((optionRef) => {
         return onSnapshot(optionRef, (docSnapshot) => {
@@ -84,7 +86,11 @@ export function useItem() {
       });
 
       // リスナーのクリーンアップ
-      return () => unsubscribes.forEach((unsub) => unsub());
+      return () => {
+        unsubscribes.forEach((unsub) => {
+          unsub();
+        });
+      };
     });
   };
 

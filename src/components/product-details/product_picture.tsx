@@ -1,15 +1,13 @@
-import { items } from '@/types/type';
+import { type items } from '@/types/type';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Card, CardMedia, IconButton } from '@mui/material';
 
 interface ProductPictureProps {
-  iconClose: () => void,
-  currentItem:items|null
+  iconClose: () => void;
+  currentItem: items | null;
 }
 
-const ProductPicture: React.FC<ProductPictureProps> = ({ iconClose, currentItem }) => {
-
-
+const ProductPicture = ({ iconClose, currentItem }: ProductPictureProps) => {
   return (
     <>
       <Box
@@ -21,7 +19,7 @@ const ProductPicture: React.FC<ProductPictureProps> = ({ iconClose, currentItem 
           margin: '0 auto',
         }}
       >
-        {/*商品名の追加*/}
+        {/* 商品名の追加 */}
         <Box>{currentItem?.name}</Box>
         <IconButton aria-label="close" onClick={iconClose}>
           <CloseIcon />

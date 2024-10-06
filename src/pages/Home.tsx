@@ -1,7 +1,6 @@
+import { useCategory } from '@/firebase/useCategory';
 import { useItem } from '@/firebase/useItem';
 import { useOptions } from '@/firebase/useOptions';
-import { category } from '../types/type';
-import { useCategory } from '@/firebase/useCategory';
 
 const Home = () => {
   const options = useOptions();
@@ -36,7 +35,7 @@ const Home = () => {
         return (
           <div key={item.id}>
             <h2>{item.name}</h2>
-            <img src={item.imgUrl} alt={item.name} />
+            <img alt={item.name} src={item.imgUrl} />
             <p>{item.price}</p>
             <p>{item.category_id}</p>
             <p>{item.visible}</p>

@@ -35,7 +35,7 @@ const Test = ({ itemId }: Props) => {
           <Card>
             <CardContent>
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
-              <ProductPicture iconClose={iconClose} currentItem={currentItem} />
+              <ProductPicture currentItem={currentItem} iconClose={iconClose} />
               <Topping />
               <ProductAmount onClose={iconClose} price={price} qty={qty} setPrice={setPrice} setQty={setQty} />
             </CardContent>
