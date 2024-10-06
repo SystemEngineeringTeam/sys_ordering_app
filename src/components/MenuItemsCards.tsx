@@ -6,9 +6,11 @@ const MenuItemsCards = () => {
   return (
     <div>
       <Card sx={{ aspectRatio: '1' }}>
-        <Box sx={{ textAlign: 'center', fontSize: '1.1rem' }}>商品１</Box>
-        <CardMedia image="./public/img/1.jpg" sx={{ width: '65%', aspectRatio: '1', margin: 'auto' }} title="one" />
-        <Box sx={{ textAlign: 'center', fontSize: '1.1rem' }}>100円～</Box>
+        <Box>
+          <Box sx={{ textAlign: 'center', fontSize: '1.1rem' }}>商品１</Box>
+          <CardMedia image="./public/img/1.jpg" sx={{ width: '65%', aspectRatio: '1', margin: 'auto' }} title="one" />
+          <Box sx={{ textAlign: 'center', fontSize: '1.1rem' }}>100円～</Box>
+        </Box>
       </Card>
     </div>
   );

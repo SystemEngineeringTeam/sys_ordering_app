@@ -1,10 +1,10 @@
 import './App.css';
-import CartItemsList from './components/CartItemsList';
+import MenuItemsContainer from './components/MenuItemsContainer';
 
 const App = () => {
   return (
     <div>
-      <CartItemsList />
+      <MenuItemsContainer />
     </div>
   );
 };
