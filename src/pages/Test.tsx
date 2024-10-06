@@ -12,7 +12,7 @@ interface Props {
 const Test = ({ itemId }: Props) => {
   const [open, setOpen] = useState(false);
   const [qty, setQty] = useState(1);
-  const [price, setPrice] = useState(1999);
+  const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
   // 商品情報を取得
@@ -21,6 +21,16 @@ const Test = ({ itemId }: Props) => {
   const currentOptions = currentItem?.options ? currentItem.options : [];
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
+
+  const cart = [
+    {
+      name: currentItem?.name, 
+      picture: currentItem?.imgUrl, 
+      qty: qty, 
+      price: price, 
+      toppings: currentOptions,
+    }
+  ];
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,6 +63,7 @@ const Test = ({ itemId }: Props) => {
                 setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
+                iconClose={iconClose}
               />
             </CardContent>
           </Card>

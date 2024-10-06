@@ -13,6 +13,7 @@ interface ProductAmountProps {
   optionPriceAmount: number;
   itemPriceAmount: number;
   setItemPriceAmount: React.Dispatch<React.SetStateAction<number>>;
+  iconClose: () => void;
 }
 
 const ProductAmount = ({
@@ -25,6 +26,7 @@ const ProductAmount = ({
   optionPriceAmount,
   itemPriceAmount,
   setItemPriceAmount,
+  iconClose,
 }: ProductAmountProps) => {
   const itemPrice = currentItemPrice;
 
@@ -96,7 +98,8 @@ const ProductAmount = ({
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ fontSize: 25, paddingRight: 5 }}>{price}円</Box>
       </Stack>
-      <Button
+      <IconButton
+        onClick={iconClose}
         sx={{
           backgroundColor: 'orange',
           color: 'white',
@@ -113,7 +116,7 @@ const ProductAmount = ({
         }}
       >
         <Box>カートに追加</Box>
-      </Button>
+      </IconButton>
     </>
   );
 };
