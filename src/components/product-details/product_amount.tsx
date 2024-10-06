@@ -10,9 +10,22 @@ interface ProductAmountProps {
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setQty: React.Dispatch<React.SetStateAction<number>>;
   currentItemPrice: number;
+  optionPriceAmount: number;
+  itemPriceAmount: number;
+  setItemPriceAmount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ProductAmount = ({ qty, setQty, onClose, price, setPrice, currentItemPrice }: ProductAmountProps) => {
+const ProductAmount = ({
+  qty,
+  setQty,
+  onClose,
+  price,
+  setPrice,
+  currentItemPrice,
+  optionPriceAmount,
+  itemPriceAmount,
+  setItemPriceAmount,
+}: ProductAmountProps) => {
   const itemPrice = currentItemPrice;
 
   const qtyAdd = () => {
@@ -27,10 +40,19 @@ const ProductAmount = ({ qty, setQty, onClose, price, setPrice, currentItemPrice
     }
   };
 
+  // 商品1個とトッピングの値段を計算
+  // const itemOtionPriceAmount = () => {
+  //   setItemPriceAmount(itemPrice + optionPriceAmount);
+  // }
+
+  useEffect(() => {
+    setItemPriceAmount(itemPrice + optionPriceAmount);
+  }, [optionPriceAmount]);
   // 商品の値段を計算
   useEffect(() => {
-    setPrice(qty * itemPrice);
-  }, [qty]);
+    // itemOtionPriceAmount();
+    setPrice(qty * itemPriceAmount);
+  }, [qty, itemPriceAmount]);
 
   return (
     <>

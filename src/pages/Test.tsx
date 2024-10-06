@@ -13,12 +13,15 @@ const Test = ({ itemId }: Props) => {
   const [open, setOpen] = useState(false);
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(1999);
+  const [optionPriceAmount, setOptionPriceAmount] = useState(0);
+  const [itemPriceAmount, setItemPriceAmount] = useState(0);
   // 商品情報を取得
   const currentItem = ProductItems(itemId);
 
   const currentOptions = currentItem?.options ? currentItem.options : [];
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -39,12 +42,15 @@ const Test = ({ itemId }: Props) => {
             <CardContent>
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture currentItem={currentItem} iconClose={iconClose} />
-              <Topping currentOptions={currentOptions} />
+              <Topping currentOptions={currentOptions} setOptionPriceAmount={setOptionPriceAmount} />
               <ProductAmount
                 currentItemPrice={currentItemPrice}
+                itemPriceAmount={itemPriceAmount}
                 onClose={iconClose}
+                optionPriceAmount={optionPriceAmount}
                 price={price}
                 qty={qty}
+                setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
               />
