@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import DrawerList from './DrawerList';
 
 type Anchor = 'bottom';
 
@@ -34,7 +35,7 @@ export default function MenuItemsBottom() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      
+      <DrawerList />
     </Box>
   );
 

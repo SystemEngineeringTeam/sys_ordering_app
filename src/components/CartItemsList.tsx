@@ -4,16 +4,11 @@ import CartListTop from './CartListTop';
 import CartListBottom from './CartListBottom';
 
 const CartItemsList = () => {
+  const cart = [];
   return (
     <div>
       <CartListTop />
       <Box sx={{ pb: '120px' }}>
-        <CartItemsCard />
-        <CartItemsCard />
-        <CartItemsCard />
-        <CartItemsCard />
-        <CartItemsCard />
-        <CartItemsCard />
         <CartItemsCard />
         <CartItemsCard />
       </Box>

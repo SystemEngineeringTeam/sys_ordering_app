@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 
 const CartItemsCard = () => {
   return (
@@ -9,7 +10,9 @@ const CartItemsCard = () => {
         <Box>
           <Box sx={{ display: 'flex' }}>
             <Box sx={{ fontSize: '1.2rem', fontWeight: 'Bold' }}>商品１</Box>
-            <EditIcon sx={{ marginLeft: '3px' }} />
+            <IconButton onClick={() => this.props.history.goBack()}>
+              <EditIcon sx={{ marginLeft: '3px' }} />
+            </IconButton>
           </Box>
           <Box sx={{ textAlign: 'right', fontSize: '0.8rem' }}>個数：１</Box>
         </Box>
