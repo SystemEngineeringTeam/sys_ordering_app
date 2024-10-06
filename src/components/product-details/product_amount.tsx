@@ -4,15 +4,16 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
 
 interface ProductAmountProps {
-  qty: number;
-  setQty: React.Dispatch<React.SetStateAction<number>>;
   onClose: () => void;
   price: number;
+  qty: number;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setQty: React.Dispatch<React.SetStateAction<number>>;
+  currentAmount?: number; 
 }
 
-const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountProps) => {
-  const itemPrice = 100;
+const ProductAmount = ({ qty, setQty, onClose, price, setPrice, currentAmount}: ProductAmountProps) => {
+  const itemPrice = currentAmount || 0; // currentAmountがundefinedの場合は0を代入
 
   const qtyAdd = () => {
     setQty(qty + 1);
