@@ -4,15 +4,33 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
 
 interface ProductAmountProps {
-  qty: number;
-  setQty: React.Dispatch<React.SetStateAction<number>>;
   onClose: () => void;
   price: number;
+  qty: number;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setQty: React.Dispatch<React.SetStateAction<number>>;
+  currentItemPrice: number;
+  optionPriceAmount: number;
+  itemPriceAmount: number;
+  setItemPriceAmount: React.Dispatch<React.SetStateAction<number>>;
+  iconClose: () => void;
+  cartPush: () => void;
 }
 
-const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountProps) => {
-  const itemPrice = 100;
+const ProductAmount = ({
+  qty,
+  setQty,
+  onClose,
+  price,
+  setPrice,
+  currentItemPrice,
+  optionPriceAmount,
+  itemPriceAmount,
+  setItemPriceAmount,
+  iconClose,
+  cartPush,
+}: ProductAmountProps) => {
+  const itemPrice = currentItemPrice;
 
   const qtyAdd = () => {
     setQty(qty + 1);
@@ -26,20 +44,23 @@ const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountP
     }
   };
 
+  // 商品1個とトッピングの値段を計算
+  // const itemOtionPriceAmount = () => {
+  //   setItemPriceAmount(itemPrice + optionPriceAmount);
+  // }
+
+  useEffect(() => {
+    setItemPriceAmount(itemPrice + optionPriceAmount);
+  }, [optionPriceAmount]);
   // 商品の値段を計算
   useEffect(() => {
-    setPrice(qty * itemPrice);
-  }, [qty]);
+    // itemOtionPriceAmount();
+    setPrice(qty * itemPriceAmount);
+  }, [qty, itemPriceAmount]);
 
   return (
     <>
-      <Stack
-        alignItems="center"
-        direction="row"
-        justifyContent="flex-start"
-        spacing={1}
-        sx={{ width: '100%', paddingLeft: 2 }}
-      >
+      <Stack alignItems="center" direction="row" justifyContent="flex-start" spacing={1} sx={{ width: '100%' }}>
         <IconButton
           aria-label="subtract"
           onClick={qtySubtraction}
@@ -71,9 +92,13 @@ const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountP
         </IconButton>
         {/* 商品の値段 */}
         <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ fontSize: 25, paddingRight: 5 }}>{price}円</Box>
+        <Box sx={{ fontSize: 25 }}>{price}円</Box>
       </Stack>
       <Button
+        onClick={() => {
+          iconClose();
+          cartPush();
+        }}
         sx={{
           backgroundColor: 'orange',
           color: 'white',
@@ -81,15 +106,15 @@ const ProductAmount = ({ qty, setQty, onClose, price, setPrice }: ProductAmountP
             backgroundColor: 'darkorange',
           },
           display: 'block',
-          margin: '0 auto',
-          marginTop: 2,
+          margin: { xs: '0rem auto', sm: '1.5rem auto' },
+          marginTop: { xs: 1, sm: 2 },
           borderRadius: '20px',
-          width: '40%',
+          width: { xs: '80%', sm: '55%' },
           maxWidth: '250px',
           padding: '6px 16px',
         }}
       >
-        <Box>カートに追加</Box>
+        <Box sx={{ fontSize: { xs: '1.0rem', sm: '1.5rem' } }}>カートに追加</Box>
       </Button>
     </>
   );

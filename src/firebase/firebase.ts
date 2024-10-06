@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore';
+import { getFirestore, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,11 +23,11 @@ const db = getFirestore(app);
 // ストレージの準備
 const storage = getStorage(app);
 // 認証オブジェクトの準備
-const auth = getAuth(app);
-// Google認証プロバイダの準備
-const googleProvider = new GoogleAuthProvider();
+// const auth = getAuth(app);
+// // Google認証プロバイダの準備
+// const googleProvider = new GoogleAuthProvider();
 
-export { db, auth, googleProvider, storage };
+export { db, storage };
 
 export default function converter<T>() {
   return {
@@ -38,5 +37,5 @@ export default function converter<T>() {
 }
 
 export const user = {
-  uid: 'SysPay',
+  uid: 'sysPay00',
 };

@@ -1,64 +1,56 @@
 import { collection, onSnapshot } from 'firebase/firestore';
 import converter, { db, user } from './firebase';
-import { category } from '@/types/type';
+import { type category } from '@/types/type';
 import { useEffect, useState } from 'react';
 
 // category のデータをリアルタイムで取得する関数
-export const getCategory = () => {
+export const useCategory = () => {
   const [category, setCategory] = useState<category[]>([]);
-
-  // const user = useAtomValue(userAtom);
-
-  // if (!user) {
-  //   throw new Error('User is not logged in');
-  // }
 
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 
   useEffect(() => {
     const unsb = onSnapshot(colRef, (snapshot) => {
-      snapshot.docChanges().forEach(async (change) => {
-        const docSnapshot = change.doc;
-        const Docdata = docSnapshot.data();
+      setCategory((prevCategory) => {
+        let updatedCategory = [...prevCategory]; // 既存のデータをコピー
 
-        const newData: category = {
-          id: docSnapshot.id,
-          name: Docdata.name as string,
-        };
+        snapshot.docChanges().forEach((change) => {
+          const docSnapshot = change.doc;
+          const Docdata = docSnapshot.data();
 
-        // 追加時
-        if (change.type === 'added') {
-          setCategory((prevCategory) => [...(prevCategory || []), newData]);
-        }
+          const newData: category = {
+            id: docSnapshot.id,
+            name: Docdata.name as string,
+          };
 
-        // 変更時
-        if (change.type === 'modified') {
-          setCategory((prevCategory) => {
-            if (!prevCategory) return prevCategory;
-            return prevCategory.map((category) => {
-              if (category.id === docSnapshot.id) {
-                return newData;
-              }
-              return category;
-            });
-          });
-        }
+          if (change.type === 'added') {
+            // 追加されたデータが既に存在していないかチェック
+            if (!updatedCategory.some((item) => item.id === newData.id)) {
+              updatedCategory.push(newData);
+            }
+          }
 
-        // 削除時
-        if (change.type === 'removed') {
-          setCategory((prevCategory) => {
-            if (!prevCategory) return prevCategory;
-            return prevCategory.filter((category) => category.id !== docSnapshot.id);
-          });
-        }
+          if (change.type === 'modified') {
+            // 変更されたデータを上書き
+            updatedCategory = updatedCategory.map((item) => (item.id === newData.id ? newData : item));
+          }
+
+          if (change.type === 'removed') {
+            // 削除されたデータを除外
+            updatedCategory = updatedCategory.filter((item) => item.id !== newData.id);
+          }
+        });
+
+        return updatedCategory;
       });
     });
+
     console.log('categoryChange');
 
     return () => {
-      unsb();
+      unsb(); // クリーンアップ処理でリスナー解除
     };
   }, []);
 
-  return { category };
+  return category;
 };
