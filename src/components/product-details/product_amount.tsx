@@ -58,13 +58,7 @@ const ProductAmount = ({
 
   return (
     <>
-      <Stack
-        alignItems="center"
-        direction="row"
-        justifyContent="flex-start"
-        spacing={1}
-        sx={{ width: '100%', paddingLeft: 2 }}
-      >
+      <Stack alignItems="center" direction="row" justifyContent="flex-start" spacing={1} sx={{ width: '100%' }}>
         <IconButton
           aria-label="subtract"
           onClick={qtySubtraction}
@@ -96,7 +90,7 @@ const ProductAmount = ({
         </IconButton>
         {/* 商品の値段 */}
         <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ fontSize: 25, paddingRight: 5 }}>{price}円</Box>
+        <Box sx={{ fontSize: 25 }}>{price}円</Box>
       </Stack>
       <Button
         onClick={iconClose}

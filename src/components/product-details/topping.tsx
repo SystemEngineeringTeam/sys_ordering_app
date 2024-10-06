@@ -18,7 +18,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount }: ToppingProps) => {
   };
 
   return (
-    <Stack spacing={2} sx={{ maxWidth: '90%', marginLeft: '20px' }}>
+    <Stack spacing={2} sx={{ maxWidth: '100%' }}>
       <Box sx={{ fontSize: '1.2rem', color: 'gray' }}>トッピング</Box>
       <Stack divider={<Divider />} spacing={2}>
         {/* currentOptionがoptions型であることを確認する条件を追加 */}
