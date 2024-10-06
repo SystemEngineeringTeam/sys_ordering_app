@@ -1,6 +1,7 @@
 import ProductAmount from '@/components/product-details/product_amount';
 import ProductPicture from '@/components/product-details/product_picture';
 import Topping from '@/components/product-details/topping';
+import { options } from '@/types/type';
 import ProductItems from '@/utils/productItems';
 import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
@@ -15,6 +16,8 @@ const Test = ({ itemId }: Props) => {
   const [price, setPrice] = useState(1999);
   // 商品情報を取得
   const currentItem = ProductItems(itemId);
+
+  const currentOptions = currentItem?.options ? currentItem.options:[];
 
   const handleOpen = () => {
     setOpen(true);
@@ -36,7 +39,7 @@ const Test = ({ itemId }: Props) => {
             <CardContent>
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture currentItem={currentItem} iconClose={iconClose} />
-              <Topping />
+              <Topping currentOptions={currentOptions}/>
               <ProductAmount onClose={iconClose} price={price} qty={qty} setPrice={setPrice} setQty={setQty} />
             </CardContent>
           </Card>
