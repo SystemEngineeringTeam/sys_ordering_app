@@ -98,7 +98,7 @@ const ProductAmount = ({
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ fontSize: 25, paddingRight: 5 }}>{price}円</Box>
       </Stack>
-      <IconButton
+      <Button
         onClick={iconClose}
         sx={{
           backgroundColor: 'orange',
@@ -116,7 +116,7 @@ const ProductAmount = ({
         }}
       >
         <Box>カートに追加</Box>
-      </IconButton>
+      </Button>
     </>
   );
 };

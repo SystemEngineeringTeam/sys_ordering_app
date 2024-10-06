@@ -24,12 +24,12 @@ const Test = ({ itemId }: Props) => {
 
   const cart = [
     {
-      name: currentItem?.name, 
-      picture: currentItem?.imgUrl, 
-      qty: qty, 
-      price: price, 
+      name: currentItem?.name,
+      picture: currentItem?.imgUrl,
+      qty,
+      price,
       toppings: currentOptions,
-    }
+    },
   ];
 
   const handleOpen = () => {
@@ -55,6 +55,7 @@ const Test = ({ itemId }: Props) => {
               <Topping currentOptions={currentOptions} setOptionPriceAmount={setOptionPriceAmount} />
               <ProductAmount
                 currentItemPrice={currentItemPrice}
+                iconClose={iconClose}
                 itemPriceAmount={itemPriceAmount}
                 onClose={iconClose}
                 optionPriceAmount={optionPriceAmount}
@@ -63,7 +64,6 @@ const Test = ({ itemId }: Props) => {
                 setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
-                iconClose={iconClose}
               />
             </CardContent>
           </Card>
