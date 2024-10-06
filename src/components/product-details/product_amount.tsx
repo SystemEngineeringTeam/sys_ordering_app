@@ -101,15 +101,15 @@ const ProductAmount = ({
             backgroundColor: 'darkorange',
           },
           display: 'block',
-          margin: '0 auto',
-          marginTop: 2,
+          margin: { xs: '0rem auto', sm: '1.5rem auto' },
+          marginTop: { xs: 1, sm: 2 },
           borderRadius: '20px',
-          width: '55%',
+          width: { xs: '80%', sm: '55%' },
           maxWidth: '250px',
           padding: '6px 16px',
         }}
       >
-        <Box>カートに追加</Box>
+        <Box sx={{ fontSize: { xs: '1.0rem', sm: '1.5rem' } }}>カートに追加</Box>
       </Button>
     </>
   );
