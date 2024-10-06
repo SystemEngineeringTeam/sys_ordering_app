@@ -18,8 +18,7 @@ const Test = ({ itemId }: Props) => {
 
   const currentOptions = currentItem?.options ? currentItem.options : [];
 
-  const currentAmount = currentItem?.price;
-
+  const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
   const handleOpen = () => {
     setOpen(true);
   };
@@ -41,7 +40,14 @@ const Test = ({ itemId }: Props) => {
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture currentItem={currentItem} iconClose={iconClose} />
               <Topping currentOptions={currentOptions} />
-              <ProductAmount onClose={iconClose} price={price} qty={qty} setPrice={setPrice} setQty={setQty} currentAmount={currentAmount}/>
+              <ProductAmount
+                currentItemPrice={currentItemPrice}
+                onClose={iconClose}
+                price={price}
+                qty={qty}
+                setPrice={setPrice}
+                setQty={setQty}
+              />
             </CardContent>
           </Card>
         </DialogContent>

@@ -9,11 +9,11 @@ interface ProductAmountProps {
   qty: number;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setQty: React.Dispatch<React.SetStateAction<number>>;
-  currentAmount?: number; 
+  currentItemPrice: number;
 }
 
-const ProductAmount = ({ qty, setQty, onClose, price, setPrice, currentAmount}: ProductAmountProps) => {
-  const itemPrice = currentAmount || 0; // currentAmountがundefinedの場合は0を代入
+const ProductAmount = ({ qty, setQty, onClose, price, setPrice, currentItemPrice }: ProductAmountProps) => {
+  const itemPrice = currentItemPrice;
 
   const qtyAdd = () => {
     setQty(qty + 1);
