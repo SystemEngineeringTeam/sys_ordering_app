@@ -1,6 +1,7 @@
 import ProductAmount from '@/components/product-details/product_amount';
 import ProductPicture from '@/components/product-details/product_picture';
 import Topping from '@/components/product-details/topping';
+import { type cartData } from '@/types/type';
 import ProductItems from '@/utils/productItems';
 import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
@@ -22,15 +23,20 @@ const Test = ({ itemId }: Props) => {
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
 
-  const cart = [
-    {
-      name: currentItem?.name,
-      picture: currentItem?.imgUrl,
-      qty,
-      price,
-      toppings: currentOptions,
-    },
-  ];
+  const optionIds = currentOptions.map((option) => {
+    return option.id;
+  });
+
+  const itemData: cartData = {
+    itemId,
+    options: optionIds,
+    qty,
+  };
+  const cart: cartData[] = [];
+
+  const cartPush = () => {
+    cart.push(itemData);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,6 +60,7 @@ const Test = ({ itemId }: Props) => {
               <ProductPicture currentItem={currentItem} iconClose={iconClose} />
               <Topping currentOptions={currentOptions} setOptionPriceAmount={setOptionPriceAmount} />
               <ProductAmount
+                cartPush={cartPush}
                 currentItemPrice={currentItemPrice}
                 iconClose={iconClose}
                 itemPriceAmount={itemPriceAmount}
