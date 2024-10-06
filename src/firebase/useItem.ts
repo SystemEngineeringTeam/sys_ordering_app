@@ -1,64 +1,92 @@
+import { items, options } from '@/types/type';
+import { collection, DocumentReference, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { useOptions } from './useOptions';
-import { collection, onSnapshot } from 'firebase/firestore';
 import converter, { db, user } from './firebase';
-import { items } from '@/types/type';
 
 export function useItem() {
   const [items, setItems] = useState<items[] | null>(null);
-
   const colRef = collection(db, 'shop_user', user.uid, 'item').withConverter(converter<items>());
-  const optionData = useOptions(); // カスタムフックの使用
 
   useEffect(() => {
-    const unsub = onSnapshot(colRef, (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        const docSnapshot = change.doc;
-        const Docdata = docSnapshot.data();
+    const unsub = onSnapshot(colRef, async (snapshot) => {
+      let updatedItems: items[] = [];
 
-        const newData: items = {
-          id: docSnapshot.id,
-          name: Docdata.name as string,
-          category_id: Docdata.category_id as string,
-          price: Docdata.price as number,
-          visible: Docdata.visible as boolean,
-          options: optionData.options, // フックの結果をここで使用
-          imgUrl: Docdata.imgUrl as string,
-        };
+      await Promise.all(
+        snapshot.docChanges().map(async (change) => {
+          const docSnapshot = change.doc;
+          const Docdata = docSnapshot.data();
 
-        if (change.type === 'added') {
-          setItems((prevData) => [...(prevData || []), newData]);
-        }
+          // オプションのリアルタイムリスナーをセットアップ
+          const optionsArry = Array.isArray(Docdata.options)
+            ? Docdata.options.filter((option): option is DocumentReference => option instanceof DocumentReference)
+            : [];
+          const newOptionData = await fetchOptionsRealtime(optionsArry);
 
-        if (change.type === 'modified') {
-          setItems((prevData) => {
-            if (!prevData) return prevData;
-            return prevData.map((data) => {
-              if (data.id === docSnapshot.id) {
-                return newData;
-              }
-              return data;
-            });
-          });
-        }
+          const newData: items = {
+            id: docSnapshot.id,
+            name: Docdata.name as string,
+            category_id: Docdata.category_id as string,
+            price: Docdata.price as number,
+            visible: Docdata.visible as boolean,
+            options: newOptionData, // オプションのリアルタイムデータをここに
+            imgUrl: Docdata.imgUrl as string,
+          };
 
-        if (change.type === 'removed') {
-          setItems((prevData) => {
-            if (prevData) {
-              return prevData.filter((data) => data.id !== docSnapshot.id);
-            }
-            return prevData;
-          });
-        }
-      });
+          // 変更、追加、削除されたアイテムを更新
+          if (change.type === 'added') {
+            updatedItems.push(newData);
+          } else if (change.type === 'modified') {
+            updatedItems = updatedItems.map((item) => (item.id === newData.id ? newData : item));
+          } else if (change.type === 'removed') {
+            updatedItems = updatedItems.filter((item) => item.id !== newData.id);
+          }
+        }),
+      );
+
+      setItems(updatedItems);
     });
 
-    return () => {
-      unsub();
-    };
+    return () => unsub();
   }, []);
 
-  console.log(items);
+  // オプションデータをリアルタイムで取得する
+  const fetchOptionsRealtime = (optionsArry: any[]) => {
+    // optionsArry の中身が DocumentReference かどうかをチェック
+    const validOptionRefs = optionsArry.filter(
+      (optionRef): optionRef is DocumentReference => optionRef instanceof DocumentReference,
+    );
+
+    if (!validOptionRefs.length) return Promise.resolve([]);
+
+    return new Promise<options[]>((resolve) => {
+      const allOptions: options[] = [];
+      const unsubscribes = validOptionRefs.map((optionRef) => {
+        return onSnapshot(optionRef, (docSnapshot) => {
+          const Docdata = docSnapshot.data();
+          if (Docdata) {
+            const newOption: options = {
+              id: docSnapshot.id,
+              name: Docdata.name,
+              price: Docdata.price,
+            };
+
+            // データを更新
+            const existingIndex = allOptions.findIndex((opt) => opt.id === newOption.id);
+            if (existingIndex >= 0) {
+              allOptions[existingIndex] = newOption;
+            } else {
+              allOptions.push(newOption);
+            }
+
+            resolve(allOptions); // 更新されたオプションリストを resolve
+          }
+        });
+      });
+
+      // リスナーのクリーンアップ
+      return () => unsubscribes.forEach((unsub) => unsub());
+    });
+  };
 
   return items;
 }

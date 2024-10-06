@@ -1,5 +1,12 @@
 import { type options } from '@/types/type';
-import { collection, onSnapshot, type PartialWithFieldValue, type QueryDocumentSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  DocumentData,
+  DocumentReference,
+  onSnapshot,
+  type PartialWithFieldValue,
+  type QueryDocumentSnapshot
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db, user } from './firebase';
 
@@ -12,57 +19,53 @@ function converter<T>() {
 
 // options のデータをリアルタイムで取得する関数
 export const useOptions = () => {
-  //   const user = useAtomValue(userAtom);
-
-  //   if (!user) {
-  //     throw new Error('User is not logged in');
-  //   }
-
   const [options, setOptions] = useState<options[]>([]);
 
   const colRef = collection(db, 'shop_user', user.uid, 'options').withConverter(converter<options>());
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
-      snapshot.docChanges().forEach(async (change) => {
-        const docSnapshot = change.doc;
-        const Docdata = docSnapshot.data();
+      setOptions((prevOptions) => {
+        let updatedOptions = [...prevOptions];
 
-        const newData: options = {
-          id: docSnapshot.id,
-          name: Docdata.name as string,
-          price: Docdata.price as number,
-        };
+        snapshot.docChanges().forEach((change) => {
+          const docSnapshot = change.doc;
+          const Docdata = docSnapshot.data();
 
-        // 追加時
-        if (change.type === 'added') {
-          setOptions((prevOptions) => [...(prevOptions || []), newData]);
-        }
-        // 変更時
-        if (change.type === 'modified') {
-          setOptions((prevOptions) => {
-            if (!prevOptions) return prevOptions;
-            return prevOptions.map((option) => {
-              if (option.id === docSnapshot.id) {
-                return newData;
-              }
-              return option;
-            });
-          });
-        }
-        // 削除時
-        if (change.type === 'removed') {
-          setOptions((prevOptions) => {
-            if (!prevOptions) return prevOptions;
-            return prevOptions.filter((option) => option.id !== docSnapshot.id);
-          });
-        }
+          const newData: options = {
+            id: docSnapshot.id,
+            name: Docdata.name as string,
+            price: Docdata.price as number,
+          };
+
+          if (change.type === 'added') {
+            // 既存データに同じIDがない場合のみ追加
+            if (!updatedOptions.some((item) => item.id === newData.id)) {
+              updatedOptions.push(newData);
+            }
+          }
+
+          if (change.type === 'modified') {
+            // 変更されたデータを上書き
+            updatedOptions = updatedOptions.map((item) => (item.id === newData.id ? newData : item));
+          }
+
+          if (change.type === 'removed') {
+            // 削除されたデータをフィルタリング
+            updatedOptions = updatedOptions.filter((item) => item.id !== newData.id);
+          }
+        });
+
+        return updatedOptions;
       });
     });
+
     console.log('optionsChange');
+
     return () => {
       unsub();
     };
   }, []);
-  return { options };
+
+  return options;
 };
