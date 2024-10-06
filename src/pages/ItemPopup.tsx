@@ -10,7 +10,7 @@ interface Props {
   itemId: string;
 }
 
-const Test = ({ itemId }: Props) => {
+const ItemPopup = ({ itemId }: Props) => {
   const [open, setOpen] = useState(false);
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
@@ -80,4 +80,4 @@ const Test = ({ itemId }: Props) => {
   );
 };
 
-export default Test;
+export default ItemPopup;

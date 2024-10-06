@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import BeforeAccountin from './pages/BeforeAccounting';
 import WaitingReceive from './pages/WaitingReceive';
 import Home from './pages/Home';
-import Test from './pages/Test';
+import Test from './pages/ItemPopup';
 
 const App = () => {
   return (
