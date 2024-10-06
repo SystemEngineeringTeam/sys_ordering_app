@@ -1,5 +1,5 @@
-import MenuItemsCards from './MenuItemsCards';
 import Grid from '@mui/material/Grid2';
+import MenuItemsCards from './MenuItemsCards';
 
 const MenuItemsContainer = () => {
   return (
