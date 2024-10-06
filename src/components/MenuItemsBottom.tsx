@@ -1,10 +1,43 @@
+import * as React from 'react';
 import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 
-const MenuItemsBottom = () => {
+type Anchor = 'bottom';
+
+export default function MenuItemsBottom() {
+  const [state, setState] = React.useState({
+    bottom: false,
+  });
+
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+
+      setState({ ...state, [anchor]: open });
+    };
+
+  const list = (anchor: Anchor) => (
+    <Box
+      sx={{ width: 'auto' }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      
+    </Box>
+  );
+
   return (
     <div>
       <Box position="fixed">
@@ -32,18 +65,18 @@ const MenuItemsBottom = () => {
             </Badge>
             <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>1200円</Box>
           </Box>
-          <Button
-            onClick={toggleDrawer(true)}
-            sx={{ margin: '3px', fontWeight: 'bold' }}
-            variant="contained"
-            color="warning"
-          >
+          <Button onClick={toggleDrawer('bottom', true)} sx={{ margin: '3px', fontWeight: 'bold' }} variant="contained" color="warning">
             カートを見る
           </Button>
+          <Drawer
+  anchor='bottom'
+  open={state.bottom}
+  onClose={toggleDrawer('bottom', false)}
+>
+  {list('bottom')}
+</Drawer>
         </AppBar>
       </Box>
     </div>
   );
 };
-
-export default MenuItemsBottom;
