@@ -13,19 +13,21 @@ export function useItem() {
         const docSnapshot = change.doc;
         const Docdata = docSnapshot.data();
 
-
         const itemData = docSnapshot.data() as DocumentData;
         const optionsArray = itemData.options ?? [];
         const optionData: options[] = await Promise.all(
           optionsArray.map(async (optionRef: DocumentReference) => {
             const optionSnap = await getDoc(optionRef);
             if (optionSnap.exists()) {
-              return optionSnap.data() as options;
+              return {
+                id: optionSnap.id,
+                name: optionSnap.data()?.name as string,
+                price: optionSnap.data()?.price as number,
+              };
             }
             return { id: null, name: null, price: null };
           }),
         );
-        
 
         const newData: items = {
           id: docSnapshot.id,
@@ -77,4 +79,3 @@ export function useItem() {
   }, []);
   return data;
 }
-

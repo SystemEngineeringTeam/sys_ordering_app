@@ -1,7 +1,7 @@
 import ProductAmount from '@/components/product-details/product_amount';
 import ProductPicture from '@/components/product-details/product_picture';
 import Topping from '@/components/product-details/topping';
-import { type cartData } from '@/types/type';
+import { items, options, options_id, type cartData } from '@/types/type';
 import ProductItems from '@/utils/productItems';
 import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
@@ -16,26 +16,29 @@ const ItemPopup = ({ itemId }: Props) => {
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
-  // 商品情報を取得
-  const currentItem = ProductItems(itemId);
+  const [selectOptions, setSelectOptions] = useState<options_id[]>([]);
 
-  const currentOptions = currentItem?.options ? currentItem.options : [];
+  // 商品情報を取得
+  const currentItem: items | null = ProductItems(itemId);
+  console.log('currentItem:', currentItem);
+
+  // itemのオプションを取得
+  const currentOptions: options[] = currentItem?.options ? currentItem.options : [];
+  console.log('currentOptions:', currentOptions);
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
 
-  const optionIds = currentOptions.map((option) => {
-    return option.id;
-  });
-
   const itemData: cartData = {
-    itemId,
-    options: optionIds,
-    qty,
+    itemId: itemId,
+    qty: qty,
+    options: selectOptions,
+    amountPrice: price,
   };
   const cart: cartData[] = [];
 
   const cartPush = () => {
     cart.push(itemData);
+    console.log('itemDataOption:' + itemData.options.map((option) => option));
   };
 
   const handleOpen = () => {
@@ -58,7 +61,12 @@ const ItemPopup = ({ itemId }: Props) => {
             <CardContent>
               {/* Add your ProductPicture, Topping, and ProductAmount components here */}
               <ProductPicture currentItem={currentItem} iconClose={iconClose} />
-              <Topping currentOptions={currentOptions} setOptionPriceAmount={setOptionPriceAmount} />
+              <Topping
+                currentOptions={currentOptions}
+                setOptionPriceAmount={setOptionPriceAmount}
+                setSelectOptions={setSelectOptions}
+                selectOptions={selectOptions}
+              />
               <ProductAmount
                 cartPush={cartPush}
                 currentItemPrice={currentItemPrice}

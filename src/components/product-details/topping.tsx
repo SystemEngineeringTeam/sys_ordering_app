@@ -1,13 +1,15 @@
-import { type options } from '@/types/type';
+import { options_id, type options } from '@/types/type';
 import { Box, Button, Stack, Divider } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ToppingProps {
   currentOptions: options[];
   setOptionPriceAmount: React.Dispatch<React.SetStateAction<number>>;
+  selectOptions: string[];
+  setSelectOptions: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Topping = ({ currentOptions, setOptionPriceAmount }: ToppingProps) => {
+const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelectOptions }: ToppingProps) => {
   const [optionStates, setOptionStates] = useState<boolean[]>(currentOptions.map(() => false)); // 各トッピングの初期状態を配列で管理
 
   const calculateTotalPrice = () => {
@@ -16,6 +18,26 @@ const Topping = ({ currentOptions, setOptionPriceAmount }: ToppingProps) => {
     }, 0);
     setOptionPriceAmount(itemPrice);
   };
+
+  useEffect(() => {
+    // optionStatesの値がtrueの場合、selectOptionsに追加
+    const newSelectOptions: options_id[] = [];
+
+    console.log('currentOptions:', currentOptions);
+
+    currentOptions.forEach((option, index) => {
+      if (optionStates[index]) {
+        console.log('optionStates[index]:', index);
+        newSelectOptions.push(option.id);
+        console.log('option:', option);
+        console.log('option.id:', option.id);
+      }
+    });
+
+    setSelectOptions(newSelectOptions);
+
+    console.log('selectOptions:', selectOptions);
+  }, [optionStates]);
 
   return (
     <Stack spacing={2} sx={{ maxWidth: '100%' }}>

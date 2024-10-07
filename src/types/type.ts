@@ -112,4 +112,5 @@ export interface cartData {
   itemId: string;
   options: options_id[];
   qty: number;
+  amountPrice: number;
 }
