@@ -1,6 +1,5 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
 
 const MenuSelectTop = () => {
   return (

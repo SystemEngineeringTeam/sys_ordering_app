@@ -1,5 +1,5 @@
 import { useCategory } from '@/firebase/useCategory';
-import { category } from '@/types/type';
+import { cartData, category } from '@/types/type';
 import { SyntheticEvent, useState } from 'react';
 import MenuItemsContainer from '@/components/menuscrean/MenuItemsContainer';
 import { Box, Tab, Tabs } from '@mui/material';
@@ -8,6 +8,7 @@ const AppLayout = () => {
   const category: category[] = useCategory();
   const [val, setVal] = useState<string>('0');
   const [activeCategory, setActiveCategory] = useState<category>(category[0]);
+  const [cart, setCart] = useState<cartData[]>([]);
 
   const handleTab = (event: SyntheticEvent, newValue: string) => {
     setVal(newValue);

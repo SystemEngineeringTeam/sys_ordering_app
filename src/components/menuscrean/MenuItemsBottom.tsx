@@ -71,7 +71,7 @@ export default function MenuItemsBottom() {
           >
             カートを見る
           </Button>
-          <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
+          <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)} sx={{ marginTop: '40%' }}>
             {list('bottom')}
           </Drawer>
         </AppBar>
