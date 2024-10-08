@@ -13,7 +13,6 @@ const App = () => {
         <Route element={<Home />} path="/a" />
         <Route element={<BeforeAccountin />} path="beforeaccountin" />
         <Route element={<WaitingReceive />} path="waitingreceive" />
-        <Route element={<ItemPopup itemId="2cvlYVy8zF1uB0hci0Hf" />} path="itemPopup" />
         <Route element={<div>Not Found</div>} path="*" />
       </Routes>
     </Router>

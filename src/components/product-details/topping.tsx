@@ -1,6 +1,6 @@
-import { options_id, type options } from '@/types/type';
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { options_id, type options } from '@/types/type';
 
 interface ToppingProps {
   currentOptions: options[];
@@ -23,20 +23,13 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
     // optionStatesの値がtrueの場合、selectOptionsに追加
     const newSelectOptions: options_id[] = [];
 
-    console.log('currentOptions:', currentOptions);
-
     currentOptions.forEach((option, index) => {
       if (optionStates[index]) {
-        console.log('optionStates[index]:', index);
         newSelectOptions.push(option.id);
-        console.log('option:', option);
-        console.log('option.id:', option.id);
       }
     });
 
     setSelectOptions(newSelectOptions);
-
-    console.log('selectOptions:', selectOptions);
   }, [optionStates]);
 
   return (
@@ -47,10 +40,16 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
         {typeof currentOptions !== null &&
           currentOptions.map((option, index) => (
             // 各トッピングに対して、Boxコンポーネントを生成
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box
+              key={index}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: { xs: 'row', sm: 'row' }, // 画面幅が小さい場合は縦並び、大きい場合は横並び
+              }}
+            >
               {/* トッピング名と価格（価格が0より大きい場合のみ表示）を表示 */}
-
-              <Box sx={{ flexGrow: 1 }}>
+              <Box sx={{ flexGrow: 1, textAlign: { xs: 'left', sm: 'left' },}}>
                 {option.name}
                 {option.price === 0 ? '' : `(+${option.price}円)`}
               </Box>
@@ -72,6 +71,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  mt: { xs: 1, sm: 0 }, // 小さい画面ではボタンに余白を追加
                 }}
                 variant="contained"
               >
