@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import DrawerListCard from './DrawerListCard';
 
-const CartItemsCard = () => {
+const DrawerList = () => {
   return (
     <div>
       <Box sx={{ maxHeight: '60%' }}>
@@ -9,14 +10,11 @@ const CartItemsCard = () => {
         <DrawerListCard />
         <DrawerListCard />
         <DrawerListCard />
-        <DrawerListCard />
-        <DrawerListCard />
-        <DrawerListCard />
-        <DrawerListCard />
-        <DrawerListCard />
-        <DrawerListCard />
+        <Button sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }} variant="contained" color="warning">
+          レジに進む
+        </Button>
       </Box>
     </div>
   );
 };
-export default CartItemsCard;
+export default DrawerList;
