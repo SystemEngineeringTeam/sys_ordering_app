@@ -18,7 +18,6 @@ const MenuItemsContainer = ({ activeCategory }: Props) => {
 
   return (
     <div>
-      <AppLayout />
       <Grid container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
         {selectItems.map((item) => {
           return (

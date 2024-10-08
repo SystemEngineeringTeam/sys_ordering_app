@@ -3,6 +3,7 @@ import { cartData, category } from '@/types/type';
 import { SyntheticEvent, useState } from 'react';
 import MenuItemsContainer from '@/components/menuscrean/MenuItemsContainer';
 import { Box, Tab, Tabs } from '@mui/material';
+import FirstHome from '@/components/menuscrean/FirstHome';
 
 const AppLayout = () => {
   const category: category[] = useCategory();
@@ -49,7 +50,7 @@ const AppLayout = () => {
           <MenuItemsContainer activeCategory={activeCategory} />
         </div>
       ) : (
-        <p>カテゴリーが選択されていません。</p>
+        <FirstHome />
       )}
     </Box>
   );
