@@ -10,9 +10,11 @@ interface Props {
   itemId: string;
   cardOpen: boolean
   setCardOpen:  React.Dispatch<React.SetStateAction<boolean>>
+  setCart:React.Dispatch<React.SetStateAction<cartData[]>>
+  cart:cartData[]
 }
 
-const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
+const ItemPopup = ({ itemId ,cardOpen,setCardOpen, cart,setCart}: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
@@ -39,9 +41,10 @@ const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
         timeStamp: nowTime,
       };
 
-      
+      console.log('itemData1234'+itemData)
+      console.log('timeStamp', itemData.timeStamp);
+      return itemData;
   };
-  const cart: cartData[] = [];
 
   
   const handleClose = () => {};
@@ -76,6 +79,8 @@ const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
                 setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
+                cart = {cart}
+                setCart = {setCart}
               />
             </CardContent>
           </Card>

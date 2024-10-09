@@ -1,7 +1,11 @@
 import Grid from '@mui/material/Grid2';
 import MenuItemsCards from './MenuItemsCards';
 import MenuItemsBottom from './MenuItemsBottom';
+<<<<<<< Updated upstream
 import { type cartData, type category } from '@/types/type';
+=======
+import { cartData, category } from '@/types/type';
+>>>>>>> Stashed changes
 import { useState } from 'react';
 
 import Grid2 from '@mui/material/Grid2';
@@ -12,11 +16,15 @@ import { menuItems } from '@/utils/menuItems';
 
 interface Props {
   activeCategory: category;
-  cart: cartData[];
+  setCart:React.Dispatch<React.SetStateAction<cartData[]>>
+  cart:cartData[]
 }
 
-const MenuItemsContainer = ({ activeCategory, cart }: Props) => {
+const MenuItemsContainer = ({ activeCategory , cart ,setCart }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
+  const [selectItemId,setSelectItemId] = useState('')
+
+
   const Item = useItem();
   const selectItems = menuItems(Item, activeCategory);
 
@@ -25,13 +33,13 @@ const MenuItemsContainer = ({ activeCategory, cart }: Props) => {
       <Grid container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
         {selectItems.map((item) => {
           return (
-            <Grid size={{ xs: 6, md: 4 }} key={item.id}>
-              <MenuItemsCards item={item} />
+            <Grid size={{xs:6,md:4}} key={item.id}>
+              <MenuItemsCards item={item} cardOpen={cardOpen} setCardOpen={setCardOpen} setSelectItemId ={setSelectItemId}/>
             </Grid>
           );
         })}
-
-        <MenuItemsBottom cart={cart} Item={Item} />
+        <ItemPopup itemId = {selectItemId} cardOpen ={cardOpen} setCardOpen={setCardOpen} cart ={cart} setCart={setCart} />
+        <MenuItemsBottom />
       </Grid>
     </div>
   );

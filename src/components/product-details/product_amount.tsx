@@ -2,6 +2,8 @@ import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
+import { addCart, addNewData, someArrayChecker } from '@/utils/addCart';
+import { cartData } from '@/types/type';
 
 interface ProductAmountProps {
   onClose: () => void;
@@ -14,7 +16,9 @@ interface ProductAmountProps {
   itemPriceAmount: number;
   setItemPriceAmount: React.Dispatch<React.SetStateAction<number>>;
   iconClose: () => void;
-  cartPush: () => void;
+  cartPush: () => cartData;
+  cart:cartData[];
+  setCart:React.Dispatch<React.SetStateAction<cartData[]>>
 }
 
 const ProductAmount = ({
@@ -29,6 +33,8 @@ const ProductAmount = ({
   setItemPriceAmount,
   iconClose,
   cartPush,
+  cart,
+  setCart
 }: ProductAmountProps) => {
   const itemPrice = currentItemPrice;
 
@@ -40,6 +46,8 @@ const ProductAmount = ({
     if (qty > 1) {
       setQty(qty - 1);
     } else {
+      setItemPriceAmount(0);//値段をリセット
+      setPrice(0); // 値段をリセット
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
   };
@@ -96,8 +104,18 @@ const ProductAmount = ({
       </Stack>
       <Button
         onClick={() => {
+
+          const NewCartDat:cartData = cartPush()
+
+          console.log('NewCartData!!!'+NewCartDat)
+
+          console.log('%o','beforeCart:'+cart);
+          addCart(NewCartDat,cart,setCart);
+          console.log('afterCart:'+cart);
+
+          setPrice(0)
+
           iconClose();
-          cartPush();
         }}
         sx={{
           backgroundColor: 'orange',
