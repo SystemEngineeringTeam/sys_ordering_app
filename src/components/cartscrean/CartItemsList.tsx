@@ -4,7 +4,6 @@ import CartListTop from './CartListTop';
 import CartListBottom from './CartListBottom';
 
 const CartItemsList = () => {
-  const cart = [];
   return (
     <div>
       <CartListTop />

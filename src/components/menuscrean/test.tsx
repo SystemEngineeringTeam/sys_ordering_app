@@ -4,8 +4,10 @@ import { styled } from '@mui/material/styles';
 import DrawerList from './DrawerList';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import DrawerList from './DrawerList';
 
 const DialogBottom = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
@@ -68,12 +70,12 @@ const BottomDialog = () => {
             <DrawerList />
             <DialogActions>
               <Button
-                sx={{  fontWeight: 'bold', ml: '3%', mr: 'auto' }}
+                sx={{ margin: '3px', fontWeight: 'bold' }}
                 variant="contained"
                 color="warning"
                 variant="outlined"
                 onClick={handleClose}
-                color="warning"
+                color="primary"
               >
                 Close
               </Button>

@@ -1,4 +1,5 @@
-// import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
+import Button from '@mui/material/Button';
 import MenuItemsCards from './MenuItemsCards';
 import MenuItemsBottom from './MenuItemsBottom';
 import { category } from '@/types/type';
@@ -12,22 +13,22 @@ interface Props {
 
 const MenuItemsContainer = ({ activeCategory }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
+  const Item = useItem();
+  const selectItems = menuItems(Item, activeCategory);
+
   return (
     <div>
-      <Grid2 container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
-        <Grid2 size={{xs:6,md:4}}>
-          <MenuItemsCards cardOpen={cardOpen} setCardOpen={setCardOpen}/>
-        </Grid2>
-        <Grid2 size={{xs:6,md:4}}>
-          <MenuItemsCards cardOpen={cardOpen} setCardOpen={setCardOpen}/>
-        </Grid2>
-        <Grid2 size={{xs:6,md:4}}>
-          <MenuItemsCards cardOpen={cardOpen} setCardOpen={setCardOpen}/>
-        </Grid2>
-      </Grid2>
-      <MenuItemsBottom />
+      <Grid container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
+        {selectItems.map((item) => {
+          return (
+            <Grid size={{xs:6,md:4}} key={item.id}>
+              <MenuItemsCards Item={item} />
+            </Grid>
+          );
+        })}
 
-      <ItemPopup itemId="2cvlYVy8zF1uB0hci0Hf" cardOpen ={cardOpen} setCardOpen={setCardOpen} />
+        <MenuItemsBottom />
+      </Grid>
     </div>
   );
 };

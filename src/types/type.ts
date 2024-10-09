@@ -31,7 +31,7 @@ export interface itemsData {
   imgUrl: string;
 }
 
-//　shop_userの型を定義
+// shop_userの型を定義
 export interface shop_user {
   id: string;
   name: string;
@@ -113,4 +113,5 @@ export interface cartData {
   options: options_id[];
   qty: number;
   amountPrice: number;
+  timeStamp: number;
 }
