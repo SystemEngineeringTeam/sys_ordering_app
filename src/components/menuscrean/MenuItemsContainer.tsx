@@ -1,11 +1,7 @@
 import Grid from '@mui/material/Grid2';
 import MenuItemsCards from './MenuItemsCards';
 import MenuItemsBottom from './MenuItemsBottom';
-<<<<<<< Updated upstream
-import { type cartData, type category } from '@/types/type';
-=======
 import { cartData, category } from '@/types/type';
->>>>>>> Stashed changes
 import { useState } from 'react';
 
 import Grid2 from '@mui/material/Grid2';
