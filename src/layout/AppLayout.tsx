@@ -9,14 +9,14 @@ const AppLayout = () => {
   const option1 = ['1F6Pg1cztoZmXiqTOFUK', 'UIq3PiEC2VFZkiuuh0Av'];
   const option2 = ['UIq3PiEC2VFZkiuuh0Av'];
   const data1: cartData = {
-    itemId: 'Ci0P7LiZfSXZTAtbycQE',
+    itemId: '2cvlYVy8zF1uB0hci0Hf',
     options: option1,
     qty: 2,
     amountPrice: 1200,
     timeStamp: 1728470170,
   };
   const data2: cartData = {
-    itemId: 'Ci0P7LiZfSXZTAtbycQE',
+    itemId: 'XHRHflP51o4uZmygg07Y',
     options: option2,
     qty: 1,
     amountPrice: 300,

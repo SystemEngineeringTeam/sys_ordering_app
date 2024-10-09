@@ -15,7 +15,6 @@ const DrawerCardItem = ({ InCartData, items, options }: Props) => {
   console.log( 'aaa' + InCartData.itemId );
   return (
     <div>
-      console.log(InCartData);
       <Box sx={{ display: 'flex', flexDirection: 'row' }}>
         <Box>
           <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>{itemName}</Box>
