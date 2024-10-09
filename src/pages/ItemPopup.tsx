@@ -8,10 +8,11 @@ import { useState } from 'react';
 
 interface Props {
   itemId: string;
+  cardOpen: boolean
+  setCardOpen:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ItemPopup = ({ itemId }: Props) => {
-  const [open, setOpen] = useState(false);
+const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
@@ -40,22 +41,16 @@ const ItemPopup = ({ itemId }: Props) => {
     cart.push(itemData);
     console.log('itemDataOption:' + itemData.options.map((option) => option));
   };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  
   const handleClose = () => {};
   const iconClose = () => {
-    setOpen(false);
+    setCardOpen(false);
   };
 
   return (
     <>
-      <Button color="primary" onClick={handleOpen} variant="contained">
-        Open Product
-      </Button>
 
-      <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={open}>
+      <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={cardOpen}>
         <DialogContent>
           <Card>
             <CardContent>
