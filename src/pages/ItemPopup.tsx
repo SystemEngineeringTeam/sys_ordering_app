@@ -29,18 +29,20 @@ const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
 
-  const itemData: cartData = {
-    itemId: itemId,
-    qty: qty,
-    options: selectOptions,
-    amountPrice: price,
+  const cartPush = () => {
+      const nowTime = new Date().getTime();
+      const itemData: cartData = {
+        itemId: itemId,
+        qty: qty,
+        options: selectOptions,
+        amountPrice: price,
+        timeStamp: nowTime,
+      };
+
+      
   };
   const cart: cartData[] = [];
 
-  const cartPush = () => {
-    cart.push(itemData);
-    console.log('itemDataOption:' + itemData.options.map((option) => option));
-  };
   
   const handleClose = () => {};
   const iconClose = () => {
