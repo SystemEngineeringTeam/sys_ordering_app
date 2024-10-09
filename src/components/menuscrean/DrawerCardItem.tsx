@@ -12,20 +12,21 @@ interface Props {
 
 const DrawerCardItem = ({ InCartData, items, options }: Props) => {
   const itemName = findItemName(InCartData.itemId, items);
-  console.log( 'aaa' + InCartData.itemId );
   return (
     <div>
-      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-        <Box>
-          <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>{itemName}</Box>
-          {InCartData.options.map((optionId) => {
-            return <DrawerOptionList optionId={optionId} options={options} />;
-          })}
-          <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>{InCartData.amountPrice}円</Box>
+      <Box sx={{ padding: '3%', borderBottom: '1px solid #bdbdbd' }}>
+        <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>{itemName}</Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box>
+            {InCartData.options.map((optionId) => {
+              return <DrawerOptionList key={optionId} optionId={optionId} options={options} />;
+            })}
+          </Box>
+          <Button sx={{ height: '50%', top: 'auto', bottom: '0' }} variant="outlined" color="warning">
+            変更
+          </Button>
         </Box>
-        <Button sx={{ height: '50%', top: 'auto', bottom: '0' }} variant="outlined" color="warning">
-          変更
-        </Button>
+        <Box sx={{ fontSize: '0.9rem', fontWeight: 'Bold', pl: '5%' }}>{InCartData.amountPrice}円</Box>
       </Box>
     </div>
   );

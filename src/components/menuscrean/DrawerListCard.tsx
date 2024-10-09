@@ -12,14 +12,10 @@ const CartItemsCard = ({ cart, items, options }: Props) => {
   return (
     <div>
       <Box>
-        <Box
-          sx={{ display: 'flex', justifyContent: 'space-between', padding: '3%', borderBottom: '1px solid #bdbdbd' }}
-        >
-          <Box>
-            {cart.map((cartdata) => {
-              return <DrawerCardItem InCartData={cartdata} items={items} options={options} />;
-            })}
-          </Box>
+        <Box>
+          {cart.map((cartdata) => {
+            return <DrawerCardItem InCartData={cartdata} items={items} options={options} />;
+          })}
         </Box>
       </Box>
     </div>
