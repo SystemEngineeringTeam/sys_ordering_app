@@ -65,7 +65,7 @@ const AppLayout = () => {
       {/* コンテンツエリア */}
       {activeCategory ? (
         <div>
-          <MenuItemsContainer activeCategory={activeCategory}  cart = {cart}  setCart = {setCart} />
+          <MenuItemsContainer activeCategory={activeCategory} cart={cart} setCart={setCart} />
         </div>
       ) : (
         <FirstHome />

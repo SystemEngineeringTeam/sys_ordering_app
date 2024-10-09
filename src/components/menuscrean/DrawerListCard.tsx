@@ -1,13 +1,14 @@
-import { items, type cartData } from '@/types/type';
+import { type items, type cartData, type options } from '@/types/type';
 import Box from '@mui/material/Box';
 import DrawerCardItem from './DrawerCardItem';
 
 interface Props {
   cart: cartData[];
-  Item: items[];
+  items: items[];
+  options: options[];
 }
 
-const CartItemsCard = ({ cart, Item }: Props) => {
+const CartItemsCard = ({ cart, items, options }: Props) => {
   return (
     <div>
       <Box>
@@ -16,7 +17,7 @@ const CartItemsCard = ({ cart, Item }: Props) => {
         >
           <Box>
             {cart.map((cartdata) => {
-              return <DrawerCardItem InCartData={cartdata} Item={Item} />;
+              return <DrawerCardItem InCartData={cartdata} items={items} options={options} />;
             })}
           </Box>
         </Box>

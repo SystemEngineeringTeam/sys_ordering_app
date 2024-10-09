@@ -6,12 +6,13 @@ import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { items, type cartData } from '@/types/type';
+import { type items, type options, type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
 
 interface Props {
   cart: cartData[];
-  Item: items[];
+  items: items[];
+  options: options[];
 }
 
 const DialogBottom = styled(Dialog)(() => ({
@@ -24,7 +25,7 @@ const DialogBottom = styled(Dialog)(() => ({
   },
 }));
 
-const MenuItemsBottom = ({ cart, Item }: Props) => {
+const MenuItemsBottom = ({ cart, items, options }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -76,7 +77,7 @@ const MenuItemsBottom = ({ cart, Item }: Props) => {
             カートを見る
           </Button>
           <DialogBottom open={open} onClose={handleClose} fullWidth>
-            <DrawerList cart={cart} Item={Item} />
+            <DrawerList cart={cart} items={items} options={options} />
             <DialogActions>
               <Button
                 sx={{ fontWeight: 'bold', ml: '3%', mr: 'auto' }}
