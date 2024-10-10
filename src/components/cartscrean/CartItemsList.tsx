@@ -14,19 +14,17 @@ interface State {
 const CartItemsList = () => {
   const location = useLocation();
   const { items, cart, options } = location.state as State;
-  console.log(`aaa${  cart}`);
   return (
     <div>
       <CartListTop />
       <Box sx={{ pb: '120px' }}>
         <Box>
           {cart.map((cartdata) => {
-            // eslint-disable-next-line react/jsx-key
             return <CartItemsCard InCartData={cartdata} items={items} options={options} />;
           })}
         </Box>
       </Box>
-      <CartListBottom />
+      <CartListBottom cart={cart} />
     </div>
   );
 };

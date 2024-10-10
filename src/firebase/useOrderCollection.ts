@@ -46,6 +46,7 @@ export const setOrderCollection = async (orderData: orderData[]) => {
 
     orderData.forEach(async (data) => {
       await addDoc(orderRef, data);
+      console.log("zzz");
     });
   } catch (error) {
     console.error('Error adding document: ', error);
