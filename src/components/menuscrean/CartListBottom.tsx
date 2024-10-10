@@ -1,38 +1,41 @@
-import React from 'react';
-import { Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Dialog, Button, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { type cartData, type orderData } from '@/types/type';
+import { type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
-import { setOrderCollection } from '@/firebase/useOrderCollection';
-import { processingCart } from '@/firebase/setOrder';
-import { useNavigate } from 'react-router-dom';
+import CheckResult from './checkResult';
 
 interface Props {
   cart: cartData[];
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+const DialogResult = styled(Dialog)(() => ({
+  '& .MuiPaper-root': {
+    position: 'fixed',
+    margin: 'auto',
+    width: '90%',
+    maxWidth: '900px', // 必要に応じて調整
+  },
+}));
 
 const CartListBottom = ({ cart, setOpen }: Props) => {
-  const navigate = useNavigate();
   const handleClose = () => {
     setOpen(false);
+  };
+  const [openResult, setOpenResult] = useState(false);
+  const handleClickOpenResult = () => {
+    setOpenResult(true);
+  };
+  const handleCloseResult = () => {
+    setOpenResult(false);
   };
 
   const SumData = getSum(cart);
   const CartSumPrice = SumData[0];
   const CartSumVal = SumData[1];
-
-  const confirmOrder = (inCartData: cartData[]) => {
-    const giveOrderData: orderData[] = processingCart(inCartData);
-    try {
-      void setOrderCollection(giveOrderData);
-    } catch (e) {}
-
-    navigate('/waitingreceive');
-  };
 
   return (
     <div>
@@ -72,12 +75,15 @@ const CartListBottom = ({ cart, setOpen }: Props) => {
           <Box>
             <Button
               color="error"
-              onClick={() => confirmOrder(cart)}
+              onClick={handleClickOpenResult}
               sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
               variant="contained"
             >
               注文を確定
             </Button>
+            <DialogResult fullWidth onClose={handleCloseResult} open={openResult}>
+              <CheckResult cart={cart} setOpenResult={setOpenResult} />
+            </DialogResult>
           </Box>
         </AppBar>
       </Box>
