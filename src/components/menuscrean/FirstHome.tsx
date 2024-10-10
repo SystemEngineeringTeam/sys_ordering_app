@@ -33,7 +33,7 @@ const FirstHome = () => {
                 制作:システム工学研究会
               </Box>
               <CardMedia
-                image="../../../public/img/sysneko.PNG"
+                image="/img/sysneko.PNG"
                 sx={{ width: '100%', aspectRatio: '1', pl: '10%' }}
                 title="one"
               />

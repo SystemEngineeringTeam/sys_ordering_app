@@ -71,7 +71,6 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             sx={{ margin: '3px', fontWeight: 'bold' }}
             variant="contained"
             color="warning"
-            variant="contained"
             onClick={handleClickOpen}
           >
             カートを見る
@@ -81,11 +80,9 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             <DialogActions>
               <Button
                 sx={{ fontWeight: 'bold', ml: '3%', mr: 'auto' }}
-                variant="contained"
                 color="warning"
                 variant="outlined"
                 onClick={handleClose}
-                color="warning"
               >
                 Close
               </Button>
