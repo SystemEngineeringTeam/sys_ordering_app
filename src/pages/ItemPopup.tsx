@@ -1,18 +1,20 @@
 import ProductAmount from '@/components/product-details/product_amount';
 import ProductPicture from '@/components/product-details/product_picture';
 import Topping from '@/components/product-details/topping';
-import { items, options, options_id, type cartData } from '@/types/type';
+import { type items, type options, type options_id, type cartData } from '@/types/type';
 import ProductItems from '@/utils/productItems';
-import { Button, Card, CardContent, Dialog, DialogContent } from '@mui/material';
+import { Card, CardContent, Dialog, DialogContent } from '@mui/material';
 import { useState } from 'react';
 
 interface Props {
   itemId: string;
-  cardOpen: boolean
-  setCardOpen:  React.Dispatch<React.SetStateAction<boolean>>
+  cardOpen: boolean;
+  setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
+  cart: cartData[];
 }
 
-const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
+const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
@@ -29,18 +31,21 @@ const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
 
-  const itemData: cartData = {
-    itemId: itemId,
-    qty: qty,
-    options: selectOptions,
-    amountPrice: price,
-  };
-  const cart: cartData[] = [];
-
   const cartPush = () => {
-    cart.push(itemData);
-    console.log('itemDataOption:' + itemData.options.map((option) => option));
+      const nowTime = new Date().getTime();
+      const itemData: cartData = {
+        itemId: itemId,
+        qty: qty,
+        options: selectOptions,
+        amountPrice: price,
+        timeStamp: nowTime,
+      };
+
+      console.log('itemData1234'+itemData)
+      console.log('timeStamp', itemData.timeStamp);
+      return itemData;
   };
+
   
   const handleClose = () => {};
   const iconClose = () => {
@@ -74,6 +79,8 @@ const ItemPopup = ({ itemId ,cardOpen,setCardOpen }: Props) => {
                 setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
+                cart = {cart}
+                setCart = {setCart}
               />
             </CardContent>
           </Card>

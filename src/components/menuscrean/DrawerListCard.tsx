@@ -1,23 +1,25 @@
+import { type items, type cartData, type options } from '@/types/type';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import DrawerCardItem from './DrawerCardItem';
 
-const CartItemsCard = () => {
+interface Props {
+  cart: cartData[];
+  items: items[];
+  options: options[];
+}
+
+const CartItemsCard = ({ cart, items, options }: Props) => {
   return (
     <div>
       <Box>
-        <Box
-          sx={{ display: 'flex', justifyContent: 'space-between', padding: '3%', borderBottom: '1px solid #bdbdbd' }}
-        >
-          <Box>
-            <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>商品１</Box>
-            <Box sx={{ textAlign: 'left', fontSize: '0.8rem' }}>オプション１</Box>
-            <Box sx={{ textAlign: 'left', fontSize: '0.8rem' }}>オプション２</Box>
-            <Box sx={{ textAlign: 'left', fontSize: '0.8rem' }}>オプション３</Box>
-            <Box sx={{ fontSize: '1rem', fontWeight: 'Bold' }}>100円</Box>
-          </Box>
-          <Button sx={{ height: '50%', top: 'auto', bottom: '0' }} variant="outlined" color="warning">
-            変更
-          </Button>
+        <Box>
+          {cart.map((cartdata) => {
+            return (
+              <Box key={cartdata.timeStamp}>
+                <DrawerCardItem InCartData={cartdata} items={items} options={options} />
+              </Box>
+            );
+          })}
         </Box>
       </Box>
     </div>

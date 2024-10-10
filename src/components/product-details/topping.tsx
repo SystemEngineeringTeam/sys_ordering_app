@@ -13,9 +13,12 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
   const [optionStates, setOptionStates] = useState<boolean[]>(currentOptions.map(() => false)); // 各トッピングの初期状態を配列で管理
 
   const calculateTotalPrice = () => {
-    const itemPrice = currentOptions.reduce((sum, option, index) => {
-      return sum + (optionStates[index] ? 0 : option.price); // 選択されたトッピングの価格を合計（逆に変更）
-    }, 0);
+    // selectOptionsにあるIDと一致するcurrentOptionsのPriceを配列にする
+    const selectOptPrice = currentOptions
+      .filter((option) => selectOptions.includes(option.id))
+      .map((option) => option.price);
+    // 配列の合計を計算
+    const itemPrice = selectOptPrice.reduce((sum, price) => sum + price, 0);
     setOptionPriceAmount(itemPrice);
   };
 
@@ -24,7 +27,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
     const newSelectOptions: options_id[] = [];
 
     currentOptions.forEach((option, index) => {
-      if (optionStates[index]) {
+      if (!optionStates[index]) {
         newSelectOptions.push(option.id);
       }
     });
