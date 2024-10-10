@@ -17,15 +17,14 @@ const itemData2 = {
   amountPrice: 1000,
 };
 
-const cart: cartData[] = [itemData1, itemData2];
+// const cart: cartData[] = [itemData1, itemData2];
 
 // 注文情報を作成する関数
 
 // cartを受け取り、orderDat
 export const processingCart = (cart: cartData[]) => {
-  const orderData = cart.map((item: any) => {
-    const orderData = createOrderData(item.itemId, item.options, item.qty);
-    return orderData;
+  const orderData = cart.map((item) => {
+    return createOrderData(item.itemId, item.options, item.qty);
   });
   return orderData;
 };

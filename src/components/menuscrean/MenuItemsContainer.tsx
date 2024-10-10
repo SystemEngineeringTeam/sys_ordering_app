@@ -18,8 +18,8 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
   const [selectItemId, setSelectItemId] = useState('');
 
-  const items = useItem() || [];
-  const options = useOptions() || [];
+  const items = useItem() ?? [];
+  const options = useOptions() ?? [];
   const selectItems = menuItems(items, activeCategory);
 
   return (

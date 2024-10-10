@@ -9,64 +9,66 @@ export function useItem() {
 
   useEffect(() => {
     const unsub = onSnapshot(colRef, (snapshot) => {
-      snapshot.docChanges().forEach(async (change) => {
-        const docSnapshot = change.doc;
-        const Docdata = docSnapshot.data();
+      snapshot.docChanges().forEach((change) => {
+        void (async () => {
+          const docSnapshot = change.doc;
+          const Docdata = docSnapshot.data();
 
-        const itemData = docSnapshot.data() as DocumentData;
-        const optionsArray = itemData.options ?? [];
-        const optionData: options[] = await Promise.all(
-          optionsArray.map(async (optionRef: DocumentReference) => {
-            const optionSnap = await getDoc(optionRef);
-            if (optionSnap.exists()) {
-              return {
-                id: optionSnap.id,
-                name: optionSnap.data()?.name as string,
-                price: optionSnap.data()?.price as number,
-              };
-            }
-            return { id: null, name: null, price: null };
-          }),
-        );
+          const itemData = docSnapshot.data() as DocumentData;
+          const optionsArray = itemData.options ?? [];
+          const optionData: options[] = await Promise.all(
+            optionsArray.map(async (optionRef: DocumentReference) => {
+              const optionSnap = await getDoc(optionRef);
+              if (optionSnap.exists()) {
+                return {
+                  id: optionSnap.id,
+                  name: optionSnap.data()?.name as string,
+                  price: optionSnap.data()?.price as number,
+                };
+              }
+              return { id: null, name: null, price: null };
+            }),
+          );
 
-        const newData: items = {
-          id: docSnapshot.id,
-          name: Docdata.name as string,
-          price: Docdata.price as number,
-          category_id: Docdata.category_id as string,
-          visible: Docdata.visible as boolean,
-          options: optionData,
-          imgUrl: Docdata.imgUrl as string,
-        };
+          const newData: items = {
+            id: docSnapshot.id,
+            name: Docdata.name as string,
+            price: Docdata.price as number,
+            category_id: Docdata.category_id as string,
+            visible: Docdata.visible as boolean,
+            options: optionData,
+            imgUrl: Docdata.imgUrl as string,
+          };
 
-        // 追加時
-        if (change.type === 'added') {
-          setData((prevData) => [...(prevData || []), newData]);
-        }
+          // 追加時
+          if (change.type === 'added') {
+            setData((prevData) => [...(prevData ?? []), newData]);
+          }
 
-        // 修正（更新時）
-        if (change.type === 'modified') {
-          setData((prevData) => {
-            if (prevData) {
-              return prevData.map((data) => {
-                if (data.id === docSnapshot.id) {
-                  return newData;
-                }
-                return data;
-              });
-            }
-            return prevData;
-          });
-        }
-        // 完全削除時
-        if (change.type === 'removed') {
-          setData((prevData) => {
-            if (prevData) {
-              return prevData.filter((data) => data.id !== docSnapshot.id);
-            }
-            return prevData;
-          });
-        }
+          // 修正（更新時）
+          if (change.type === 'modified') {
+            setData((prevData) => {
+              if (prevData !== undefined) {
+                return prevData.map((d) => {
+                  if (d.id === docSnapshot.id) {
+                    return newData;
+                  }
+                  return data;
+                });
+              }
+              return prevData;
+            });
+          }
+          // 完全削除時
+          if (change.type === 'removed') {
+            setData((prevData) => {
+              if (prevData) {
+                return prevData.filter((d) => d.id !== docSnapshot.id);
+              }
+              return prevData;
+            });
+          }
+        })();
       });
     });
 

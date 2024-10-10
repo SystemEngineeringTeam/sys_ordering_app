@@ -20,7 +20,7 @@ const CartItemsList = () => {
       <Box sx={{ pb: '120px' }}>
         <Box>
           {cart.map((cartdata) => {
-            return <CartItemsCard InCartData={cartdata} items={items} options={options} />;
+            return <CartItemsCard key={cartdata.itemId} InCartData={cartdata} items={items} options={options} />;
           })}
         </Box>
       </Box>

@@ -36,7 +36,11 @@ const CartItemsCard = ({ InCartData, items, options }: Props) => {
             <Box sx={{ fontSize: '1.2rem', fontWeight: 'Bold', justifyContent: 'center' }}>
               <Box sx={{ margin: 'auto', mt: '6px', mb: '6px' }}>{itemName}</Box>
             </Box>
-            <IconButton onClick={() => navigate(-1)}>
+            <IconButton
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <EditIcon sx={{ marginLeft: '3px' }} />
             </IconButton>
           </Box>
