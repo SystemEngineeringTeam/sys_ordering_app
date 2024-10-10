@@ -4,7 +4,7 @@ import Topping from '@/components/product-details/topping';
 import { type items, type options, type options_id, type cartData } from '@/types/type';
 import ProductItems from '@/utils/productItems';
 import { Card, CardContent, Dialog, DialogContent } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   itemId: string;
@@ -19,35 +19,34 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
-  const [selectOptions, setSelectOptions] = useState<options_id[]>([]);
-
+  const [selectOptions, setSelectOptions] = useState<options[]>([]);
+  useEffect(() => {
+  }, [optionPriceAmount])
   // 商品情報を取得
   const currentItem: items | null = ProductItems(itemId);
-  console.log('currentItem:', currentItem);
 
   // itemのオプションを取得
   const currentOptions: options[] = currentItem?.options ? currentItem.options : [];
-  console.log('currentOptions:', currentOptions);
 
   const currentItemPrice = currentItem?.price ? currentItem?.price : 0;
 
   const cartPush = () => {
-      const nowTime = new Date().getTime();
-      const itemData: cartData = {
-        itemId: itemId,
-        qty: qty,
-        options: selectOptions,
-        amountPrice: price,
-        timeStamp: nowTime,
-      };
+    const nowTime = new Date().getTime();
+    const itemData: cartData = {
+      itemId: itemId,
+      qty: qty,
+      options: selectOptions.map((e) => e.id),
+      amountPrice: price,
+      timeStamp: nowTime,
+    };
 
-      console.log('itemData1234'+itemData)
-      console.log('timeStamp', itemData.timeStamp);
-      return itemData;
+    console.log('itemData1234' + itemData)
+    console.log('timeStamp', itemData.timeStamp);
+    return itemData;
   };
 
-  
-  const handleClose = () => {};
+
+  const handleClose = () => { };
   const iconClose = () => {
     setCardOpen(false);
   };
@@ -65,7 +64,6 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
                 currentOptions={currentOptions}
                 setOptionPriceAmount={setOptionPriceAmount}
                 setSelectOptions={setSelectOptions}
-                selectOptions={selectOptions}
               />
               <ProductAmount
                 cartPush={cartPush}
@@ -79,8 +77,8 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
                 setItemPriceAmount={setItemPriceAmount}
                 setPrice={setPrice}
                 setQty={setQty}
-                cart = {cart}
-                setCart = {setCart}
+                cart={cart}
+                setCart={setCart}
               />
             </CardContent>
           </Card>

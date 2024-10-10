@@ -17,8 +17,8 @@ interface ProductAmountProps {
   setItemPriceAmount: React.Dispatch<React.SetStateAction<number>>;
   iconClose: () => void;
   cartPush: () => cartData;
-  cart:cartData[];
-  setCart:React.Dispatch<React.SetStateAction<cartData[]>>
+  cart: cartData[];
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>
 }
 
 const ProductAmount = ({
@@ -51,11 +51,6 @@ const ProductAmount = ({
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
   };
-
-  // 商品1個とトッピングの値段を計算
-  // const itemOtionPriceAmount = () => {
-  //   setItemPriceAmount(itemPrice + optionPriceAmount);
-  // }
 
   useEffect(() => {
     setItemPriceAmount(itemPrice + optionPriceAmount);
@@ -104,17 +99,10 @@ const ProductAmount = ({
       </Stack>
       <Button
         onClick={() => {
-
-          const NewCartDat:cartData = cartPush()
-
-          console.log('NewCartData!!!'+NewCartDat)
-
-          console.log('%o','beforeCart:'+cart);
-          addCart(NewCartDat,cart,setCart);
-          console.log('afterCart:'+cart);
-
-          setPrice(0)
-
+          const NewCartData: cartData = cartPush();
+          console.log("new", NewCartData);
+          addCart(NewCartData, cart, setCart);
+          setPrice(0);
           iconClose();
         }}
         sx={{

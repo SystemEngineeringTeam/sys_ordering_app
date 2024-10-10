@@ -25,6 +25,7 @@ const FirstHome = () => {
           </Grid>
           <Grid size={12}>
             <Box sx={{ textAlign: 'left', fontSize: '1.4rem', fontWeight: 'bold' }}>注文する</Box>
+            <Box></Box>
           </Grid>
           <Grid size={12}>
             <Card sx={{ aspectRatio: '1', backgroundColor: 'yellow' }}>
@@ -32,7 +33,7 @@ const FirstHome = () => {
                 制作:システム工学研究会
               </Box>
               <CardMedia
-                image="../../../public/img/sysneko.PNG"
+                image="/img/sysneko.PNG"
                 sx={{ width: '100%', aspectRatio: '1', pl: '10%' }}
                 title="one"
               />
