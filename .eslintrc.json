@@ -9,7 +9,7 @@
     "sourceType": "module",
     "project": ["./tsconfig.json","./tsconfig.app.json","./tsconfig.node.json"]
   },
-  "plugins": ["react", "unused-imports"],
+  "plugins": ["react", "unused-imports","prettier"],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -29,7 +29,7 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "no-restricted-imports": ["error", { "patterns": ["../*"] }],
-    "import/order": "off",
+    "import/order": "off",  
     // "import/order": [
     //   "error",
     //   {
