@@ -2,8 +2,10 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import IconButton from '@mui/material/IconButton';
+import { useNavigate } from 'react-router-dom';
 
 const CartListTop = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       color="inherit"
@@ -18,7 +20,11 @@ const CartListTop = () => {
       }}
     >
       <Box sx={{ position: 'absolute', top: '4%', left: '2%' }}>
-        <IconButton onClick={() => this.props.history.goBack()}>
+        <IconButton
+          onClick={() => {
+            navigate('/');
+          }}
+        >
           <ArrowBackIosIcon fontSize="large" />
         </IconButton>
       </Box>

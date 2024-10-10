@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import DrawerListCard from './DrawerListCard';
 import { type items, type options, type cartData } from '@/types/type';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   cart: cartData[];
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const DrawerList = ({ cart, items, options }: Props) => {
+  const navigate = useNavigate();
   return (
     <div>
       <Box>
@@ -17,7 +19,14 @@ const DrawerList = ({ cart, items, options }: Props) => {
         <Box sx={{ borderBottom: '1px solid #bdbdbd' }}>
           <DrawerListCard cart={cart} items={items} options={options} />
         </Box>
-        <Button sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }} variant="contained" color="warning">
+        <Button
+          sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }}
+          variant="contained"
+          color="warning"
+          onClick={() => {
+            navigate('/createitemlist', { state: { items, cart, options } });
+          }}
+        >
           レジに進む
         </Button>
       </Box>

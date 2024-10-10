@@ -14,7 +14,11 @@ const CartItemsCard = ({ cart, items, options }: Props) => {
       <Box>
         <Box>
           {cart.map((cartdata) => {
-            return <DrawerCardItem InCartData={cartdata} items={items} options={options} />;
+            return (
+              <Box key={cartdata.timeStamp}>
+                <DrawerCardItem InCartData={cartdata} items={items} options={options} />
+              </Box>
+            );
           })}
         </Box>
       </Box>
