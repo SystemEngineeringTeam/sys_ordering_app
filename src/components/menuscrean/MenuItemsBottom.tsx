@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogActions, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import DrawerList from './DrawerList';
@@ -8,6 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import { type items, type options, type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
+import CartListBottom from './CartListBottom';
 
 interface Props {
   cart: cartData[];
@@ -21,7 +22,7 @@ const DialogBottom = styled(Dialog)(() => ({
     bottom: 0,
     margin: 0,
     width: '100%',
-    maxWidth: '600px', // 必要に応じて調整
+    maxWidth: '900px', // 必要に応じて調整
   },
 }));
 
@@ -68,24 +69,17 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
           </Box>
           <Button
-            sx={{ margin: '3px', fontWeight: 'bold' }}
-            variant="contained"
             color="warning"
             onClick={handleClickOpen}
+            sx={{ margin: '3px', fontWeight: 'bold' }}
+            variant="contained"
           >
             カートを見る
           </Button>
-          <DialogBottom open={open} onClose={handleClose} fullWidth>
+          <DialogBottom fullWidth onClose={handleClose} open={open}>
             <DrawerList cart={cart} items={items} options={options} />
             <DialogActions>
-              <Button
-                sx={{ fontWeight: 'bold', ml: '3%', mr: 'auto' }}
-                color="warning"
-                variant="outlined"
-                onClick={handleClose}
-              >
-                Close
-              </Button>
+              <CartListBottom cart={cart} setOpen={setOpen} />
             </DialogActions>
           </DialogBottom>
         </AppBar>
