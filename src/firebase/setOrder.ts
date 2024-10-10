@@ -1,5 +1,5 @@
 import { type cartData, type orderData } from '@/types/type';
-import { collection, doc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import { db, user } from './firebase';
 
 // 仮置き

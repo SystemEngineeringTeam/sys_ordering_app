@@ -39,13 +39,10 @@ const AppLayout = () => {
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Tabs
-          value={val}
-          onChange={handleTab}
-          textColor="primary"
-          indicatorColor="secondary"
-          variant="fullWidth"
-          scrollButtons="auto"
           allowScrollButtonsMobile
+          indicatorColor="secondary"
+          onChange={handleTab}
+          scrollButtons="auto"
           sx={{
             textAlign: 'center',
             width: '100%',
@@ -56,6 +53,9 @@ const AppLayout = () => {
             alignItems: 'center',
             display: 'flex', // Centralize the Tabs
           }}
+          textColor="primary"
+          value={val}
+          variant="fullWidth"
         >
           {category.map((item, index) => (
             <Tab key={item.id} label={item.name} value={String(index)} />

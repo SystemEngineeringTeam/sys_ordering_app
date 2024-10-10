@@ -20,12 +20,12 @@ const DrawerList = ({ cart, items, options }: Props) => {
           <DrawerListCard cart={cart} items={items} options={options} />
         </Box>
         <Button
-          sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }}
-          variant="contained"
           color="warning"
           onClick={() => {
             navigate('/createitemlist', { state: { items, cart, options } });
           }}
+          sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }}
+          variant="contained"
         >
           レジに進む
         </Button>

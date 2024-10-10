@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { options_id, type options } from '@/types/type';
+import { type options_id, type options } from '@/types/type';
 
 interface ToppingProps {
   currentOptions: options[];
@@ -52,7 +52,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
               }}
             >
               {/* トッピング名と価格（価格が0より大きい場合のみ表示）を表示 */}
-              <Box sx={{ flexGrow: 1, textAlign: { xs: 'left', sm: 'left' },}}>
+              <Box sx={{ flexGrow: 1, textAlign: { xs: 'left', sm: 'left' } }}>
                 {option.name}
                 {option.price === 0 ? '' : `(+${option.price}円)`}
               </Box>

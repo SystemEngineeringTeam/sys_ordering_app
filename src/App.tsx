@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import ItemPopup from './pages/ItemPopup';
 import AppLayout from './layout/AppLayout';
 import CartItemsList from './components/cartscrean/CartItemsList';
-import MenuItemsContainer from './components/menuscrean/MenuItemsContainer';
 
 const App = () => {
   return (

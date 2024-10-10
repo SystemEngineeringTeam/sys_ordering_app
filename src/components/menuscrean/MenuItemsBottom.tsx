@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogActions, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import DrawerList from './DrawerList';
@@ -68,24 +68,24 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
           </Box>
           <Button
+            color="warning"
+            onClick={handleClickOpen}
             sx={{ margin: '3px', fontWeight: 'bold' }}
             variant="contained"
-            color="warning"
             variant="contained"
-            onClick={handleClickOpen}
           >
             カートを見る
           </Button>
-          <DialogBottom open={open} onClose={handleClose} fullWidth>
+          <DialogBottom fullWidth onClose={handleClose} open={open}>
             <DrawerList cart={cart} items={items} options={options} />
             <DialogActions>
               <Button
+                color="warning"
+                color="warning"
+                onClick={handleClose}
                 sx={{ fontWeight: 'bold', ml: '3%', mr: 'auto' }}
                 variant="contained"
-                color="warning"
                 variant="outlined"
-                onClick={handleClose}
-                color="warning"
               >
                 Close
               </Button>

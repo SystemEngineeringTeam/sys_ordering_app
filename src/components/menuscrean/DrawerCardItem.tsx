@@ -22,7 +22,7 @@ const DrawerCardItem = ({ InCartData, items, options }: Props) => {
               return <DrawerOptionList key={optionId} optionId={optionId} options={options} />;
             })}
           </Box>
-          <Button sx={{ height: '50%', top: 'auto', bottom: '0' }} variant="outlined" color="warning">
+          <Button color="warning" sx={{ height: '50%', top: 'auto', bottom: '0' }} variant="outlined">
             変更
           </Button>
         </Box>
