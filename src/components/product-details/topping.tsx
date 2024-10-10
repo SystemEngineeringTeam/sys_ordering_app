@@ -1,38 +1,27 @@
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { options_id, type options } from '@/types/type';
+import { type options } from '@/types/type';
 
 interface ToppingProps {
   currentOptions: options[];
   setOptionPriceAmount: React.Dispatch<React.SetStateAction<number>>;
-  selectOptions: string[];
-  setSelectOptions: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectOptions: React.Dispatch<React.SetStateAction<options[]>>;
 }
 
-const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelectOptions }: ToppingProps) => {
+const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions }: ToppingProps) => {
   const [optionStates, setOptionStates] = useState<boolean[]>(currentOptions.map(() => false)); // 各トッピングの初期状態を配列で管理
-
-  const calculateTotalPrice = () => {
-    // selectOptionsにあるIDと一致するcurrentOptionsのPriceを配列にする
-    const selectOptPrice = currentOptions
-      .filter((option) => selectOptions.includes(option.id))
-      .map((option) => option.price);
-    // 配列の合計を計算
-    const itemPrice = selectOptPrice.reduce((sum, price) => sum + price, 0);
-    setOptionPriceAmount(itemPrice);
-  };
-
   useEffect(() => {
-    // optionStatesの値がtrueの場合、selectOptionsに追加
-    const newSelectOptions: options_id[] = [];
-
-    currentOptions.forEach((option, index) => {
-      if (!optionStates[index]) {
-        newSelectOptions.push(option.id);
-      }
-    });
-
-    setSelectOptions(newSelectOptions);
+    const selOpt = currentOptions.filter((e, index) => {
+      return optionStates[index];
+    })
+    setSelectOptions(selOpt);
+    setOptionPriceAmount(
+      selOpt.reduce((sum, e) => {
+        console.log("topping", sum, e)
+        sum = sum + e.price;
+        return sum;
+      }, 0)
+    );
   }, [optionStates]);
 
   return (
@@ -52,7 +41,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
               }}
             >
               {/* トッピング名と価格（価格が0より大きい場合のみ表示）を表示 */}
-              <Box sx={{ flexGrow: 1, textAlign: { xs: 'left', sm: 'left' },}}>
+              <Box sx={{ flexGrow: 1, textAlign: { xs: 'left', sm: 'left' }, }}>
                 {option.name}
                 {option.price === 0 ? '' : `(+${option.price}円)`}
               </Box>
@@ -62,7 +51,6 @@ const Topping = ({ currentOptions, setOptionPriceAmount, selectOptions, setSelec
                   const newStates = [...optionStates];
                   newStates[index] = !newStates[index]; // 対応するトッピングの状態をトグル
                   setOptionStates(newStates);
-                  calculateTotalPrice();
                 }}
                 size="small"
                 sx={{
