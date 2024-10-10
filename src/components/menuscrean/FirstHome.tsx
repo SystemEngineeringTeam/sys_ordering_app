@@ -25,6 +25,7 @@ const FirstHome = () => {
           </Grid>
           <Grid size={12}>
             <Box sx={{ textAlign: 'left', fontSize: '1.4rem', fontWeight: 'bold' }}>注文する</Box>
+            <Box></Box>
           </Grid>
           <Grid size={12}>
             <Card sx={{ aspectRatio: '1', backgroundColor: 'yellow' }}>
