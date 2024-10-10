@@ -12,9 +12,10 @@ interface Props {
   setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
   cart: cartData[];
+  InCartData: cartData;
 }
 
-const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
+const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData }: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
@@ -22,7 +23,7 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
   const [selectOptions, setSelectOptions] = useState<options[]>([]);
   useEffect(() => {
   }, [optionPriceAmount])
-  // 商品情報を取得
+  // itemIDに一致するitemの取得
   const currentItem: items | null = ProductItems(itemId);
 
   // itemのオプションを取得
@@ -64,6 +65,7 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
                 currentOptions={currentOptions}
                 setOptionPriceAmount={setOptionPriceAmount}
                 setSelectOptions={setSelectOptions}
+                InCartData={InCartData}
               />
               <ProductAmount
                 cartPush={cartPush}

@@ -103,6 +103,7 @@ const ProductAmount = ({
           console.log("new", NewCartData);
           addCart(NewCartData, cart, setCart);
           setPrice(0);
+          setQty(1);
           iconClose();
         }}
         sx={{

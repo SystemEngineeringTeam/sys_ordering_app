@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid2';
 import MenuItemsCards from './MenuItemsCards';
 import MenuItemsBottom from './MenuItemsBottom';
 import { type cartData, type category } from '@/types/type';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import ItemPopup from '@/pages/ItemPopup';
 import { useItem } from '@/firebase/useItem';
 import { menuItems } from '@/utils/menuItems';
@@ -12,11 +12,12 @@ interface Props {
   activeCategory: category;
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
   cart: cartData[];
+  itemId: string;
 }
 
-const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
+const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId, }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
-  const [selectItemId,setSelectItemId] = useState('')
+  const [selectItemId, setSelectItemId] = useState('')
 
 
   const items = useItem() || [];
@@ -39,7 +40,8 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
           );
         })}
         <ItemPopup itemId={selectItemId} cardOpen={cardOpen} setCardOpen={setCardOpen} cart={cart} setCart={setCart} />
-        <MenuItemsBottom cart={cart} items={items} options={options} />
+        <MenuItemsBottom cart={cart} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart}
+        />
       </Grid>
     </div>
   );

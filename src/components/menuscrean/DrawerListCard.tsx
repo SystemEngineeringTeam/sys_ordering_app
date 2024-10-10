@@ -6,9 +6,13 @@ interface Props {
   cart: cartData[];
   items: items[];
   options: options[];
+  itemId: string;
+  cardOpen: boolean;
+  setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
 }
 
-const CartItemsCard = ({ cart, items, options }: Props) => {
+const CartItemsCard = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCart }: Props) => {
   return (
     <div>
       <Box>
@@ -16,7 +20,7 @@ const CartItemsCard = ({ cart, items, options }: Props) => {
           {cart.map((cartdata) => {
             return (
               <Box key={cartdata.timeStamp}>
-                <DrawerCardItem InCartData={cartdata} items={items} options={options} />
+                <DrawerCardItem InCartData={cartdata} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart} cart={[]} />
               </Box>
             );
           })}
