@@ -114,7 +114,7 @@ const ProductAmount = ({
 
           console.log('new', NewCartData);
 
-          addCart(NewCartData, cart, setCart);
+          addCart(NewCartData, cart, setCart,kind);
 
           if (kind === 'edit') {
             deleteNewData(InCartData, cart, setCart);
