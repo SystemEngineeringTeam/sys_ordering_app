@@ -7,6 +7,7 @@ import Badge from '@mui/material/Badge';
 import { type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
 import CheckResult from './CheckResult';
+import { margin } from '@mui/system';
 
 interface Props {
   cart: cartData[];
@@ -57,17 +58,17 @@ const CartListBottom = ({ cart, setOpen }: Props) => {
             flexDirection: 'row',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: '2px' }}>
             <Badge badgeContent={CartSumVal} color="error">
               <ShoppingCartIcon fontSize="large" />
             </Badge>
-            <Box sx={{ fontSize: '1.4rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
+            <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mr: '0' }}>
             <Button
               color="warning"
               onClick={handleClose}
-              sx={{ fontWeight: 'bold', fontSize: '0.8rem', pl: '3px', pr: '3px', mr: '3px' }}
+              sx={{ fontWeight: 'bold', fontSize: '0.8rem', pl: '3px', pr: '3px', pt: '8px', pb: '8px', margin: '3px' }}
               variant="contained"
             >
               メニューに戻る
@@ -76,7 +77,15 @@ const CartListBottom = ({ cart, setOpen }: Props) => {
               <Button
                 color="error"
                 onClick={handleClickOpenResult}
-                sx={{ fontWeight: 'bold', fontSize: '0.8rem', pl: '6px', pr: '6px', pt: '8px', pb: '8px' }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '0.8rem',
+                  pl: '6px',
+                  pr: '6px',
+                  pt: '8px',
+                  pb: '8px',
+                  margin: '3px',
+                }}
                 variant="contained"
               >
                 注文を確定
