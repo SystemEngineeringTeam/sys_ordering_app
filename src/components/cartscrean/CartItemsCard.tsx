@@ -6,6 +6,7 @@ import { type items, type cartData, type options } from '@/types/type';
 import { findItemName } from '@/utils/findItemName';
 import { findItemImg } from '@/utils/findItemImg';
 import CartItemOption from './CartItemOption';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   InCartData: cartData;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const CartItemsCard = ({ InCartData, items, options }: Props) => {
+  const navigate = useNavigate();
   const itemName = findItemName(InCartData.itemId, items);
   const itemImage = findItemImg(InCartData.itemId, items);
   return (
@@ -34,7 +36,11 @@ const CartItemsCard = ({ InCartData, items, options }: Props) => {
             <Box sx={{ fontSize: '1.2rem', fontWeight: 'Bold', justifyContent: 'center' }}>
               <Box sx={{ margin: 'auto', mt: '6px', mb: '6px' }}>{itemName}</Box>
             </Box>
-            <IconButton onClick={() => this.props.history.goBack()}>
+            <IconButton
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <EditIcon sx={{ marginLeft: '3px' }} />
             </IconButton>
           </Box>

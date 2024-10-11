@@ -13,7 +13,7 @@ const DrawerList = ({ cart, items, options }: Props) => {
     <div>
       <Box>
         <Box
-          enableColorOnDark
+          component="div"
           position="sticky"
           sx={{
             fontSize: '1.5rem',
