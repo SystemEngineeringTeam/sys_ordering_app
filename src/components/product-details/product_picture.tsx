@@ -21,7 +21,7 @@ const ProductPicture = ({ iconClose, currentItem }: ProductPictureProps) => {
       >
         {/* 商品名の追加 */}
         <Box>{currentItem?.name}</Box>
-        <IconButton aria-label="close" onClick={iconClose} >
+        <IconButton aria-label="close" onClick={iconClose}>
           <CloseIcon />
         </IconButton>
       </Box>

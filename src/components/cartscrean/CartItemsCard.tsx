@@ -24,14 +24,14 @@ const CartItemsCard = ({ InCartData, items, options, setCart, cart }: Props) => 
 
   const handleChengeClick = () => {
     console.log('変更！！！');
-    console.log('itemID%う５雨１５' + InCartData.itemId);
-    console.log('cart###' + cart);
+    console.log(`itemID%う５雨１５${InCartData.itemId}`);
+    console.log(`cart###${cart}`);
 
     setEditDaialogOpen(true);
   };
 
   useEffect(() => {
-    console.log('cartが変わった' + cart);
+    console.log(`cartが変わった${cart}`);
   }, [cart]);
 
   return (
@@ -56,13 +56,13 @@ const CartItemsCard = ({ InCartData, items, options, setCart, cart }: Props) => 
               <EditIcon sx={{ marginLeft: '3px' }} />
             </IconButton>
             <ItemPopup
-              itemId={InCartData.itemId}
               cardOpen={editDaialogOpen}
-              setCardOpen={setEditDaialogOpen}
-              setCart={setCart}
               cart={cart}
               InCartData={InCartData}
+              itemId={InCartData.itemId}
               kinds="edit"
+              setCardOpen={setEditDaialogOpen}
+              setCart={setCart}
             />
           </Box>
           <Box>

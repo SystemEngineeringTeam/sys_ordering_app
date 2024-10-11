@@ -27,7 +27,7 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
       <Grid container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
         {selectItems.map((item) => {
           return (
-            <Grid size={{ xs: 6, md: 4 }} key={item.id}>
+            <Grid key={item.id} size={{ xs: 6, md: 4 }}>
               <MenuItemsCards
                 cardOpen={cardOpen}
                 item={item}
@@ -40,10 +40,6 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
         <ItemPopup
           cardOpen={cardOpen}
           cart={cart}
-          itemId={selectItemId}
-          setCardOpen={setCardOpen}
-          setCart={setCart}
-          kinds="add"
           InCartData={{
             itemId: '',
             qty: 0,
@@ -51,13 +47,17 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
             amountPrice: 0,
             timeStamp: 0,
           }}
+          itemId={selectItemId}
+          kinds="add"
+          setCardOpen={setCardOpen}
+          setCart={setCart}
         />
         <MenuItemsBottom
+          cardOpen={cardOpen}
           cart={cart}
+          itemId={selectItemId}
           items={items}
           options={options}
-          itemId={selectItemId}
-          cardOpen={cardOpen}
           setCardOpen={setCardOpen}
           setCart={setCart}
         />

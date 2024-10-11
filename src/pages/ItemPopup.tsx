@@ -38,14 +38,14 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, k
   const cartPush = () => {
     const nowTime = new Date().getTime();
     const itemData: cartData = {
-      itemId: itemId,
-      qty: qty,
+      itemId,
+      qty,
       options: selectOptions.map((e) => e.id),
       amountPrice: price,
       timeStamp: nowTime,
     };
 
-    console.log('itemData1234' + itemData);
+    console.log(`itemData1234${itemData}`);
     console.log('timeStamp', itemData.timeStamp);
     return itemData;
   };
@@ -56,41 +56,39 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, k
   };
 
   return (
-    <>
-      <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={cardOpen}>
-        <DialogContent>
-          <Card>
-            <CardContent>
-              {/* Add your ProductPicture, Topping, and ProductAmount components here */}
-              <ProductPicture currentItem={currentItem} iconClose={iconClose} />
-              <Topping
-                currentOptions={currentOptions}
-                setOptionPriceAmount={setOptionPriceAmount}
-                setSelectOptions={setSelectOptions}
-                InCartData={InCartData}
-              />
-              <ProductAmount
-                cartPush={cartPush}
-                currentItemPrice={currentItemPrice}
-                iconClose={iconClose}
-                itemPriceAmount={itemPriceAmount}
-                onClose={iconClose}
-                optionPriceAmount={optionPriceAmount}
-                price={price}
-                qty={qty}
-                setItemPriceAmount={setItemPriceAmount}
-                setPrice={setPrice}
-                setQty={setQty}
-                cart={cart}
-                setCart={setCart}
-                InCartData={InCartData}
-                kind={kinds}
-              />
-            </CardContent>
-          </Card>
-        </DialogContent>
-      </Dialog>
-    </>
+    <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={cardOpen}>
+      <DialogContent>
+        <Card>
+          <CardContent>
+            {/* Add your ProductPicture, Topping, and ProductAmount components here */}
+            <ProductPicture currentItem={currentItem} iconClose={iconClose} />
+            <Topping
+              currentOptions={currentOptions}
+              InCartData={InCartData}
+              setOptionPriceAmount={setOptionPriceAmount}
+              setSelectOptions={setSelectOptions}
+            />
+            <ProductAmount
+              cart={cart}
+              cartPush={cartPush}
+              currentItemPrice={currentItemPrice}
+              iconClose={iconClose}
+              InCartData={InCartData}
+              itemPriceAmount={itemPriceAmount}
+              kind={kinds}
+              onClose={iconClose}
+              optionPriceAmount={optionPriceAmount}
+              price={price}
+              qty={qty}
+              setCart={setCart}
+              setItemPriceAmount={setItemPriceAmount}
+              setPrice={setPrice}
+              setQty={setQty}
+            />
+          </CardContent>
+        </Card>
+      </DialogContent>
+    </Dialog>
   );
 };
 

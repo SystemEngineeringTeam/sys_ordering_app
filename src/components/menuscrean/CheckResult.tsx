@@ -41,7 +41,9 @@ const CheckResult = ({ cart, setOpenResult }: Props) => {
             </Button>
             <Button
               color="error"
-              onClick={() => confirmOrder(cart)}
+              onClick={() => {
+                confirmOrder(cart);
+              }}
               sx={{ fontWeight: 'bold', margin: '2%' }}
               variant="contained"
             >

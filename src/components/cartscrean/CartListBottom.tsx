@@ -30,12 +30,12 @@ const CartListBottom = ({ cart }: Props) => {
             <Box sx={{ fontSize: '1.7rem' }}>{CartSumPrice}円</Box>
           </Box>
           <Button
-            sx={{ margin: '3px', fontWeight: 'bold' }}
-            variant="contained"
             color="warning"
             onClick={() => {
               confirmOrder(cart);
             }}
+            sx={{ margin: '3px', fontWeight: 'bold' }}
+            variant="contained"
           >
             注文を確定
           </Button>

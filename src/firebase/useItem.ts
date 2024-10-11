@@ -1,6 +1,6 @@
-import { collection, DocumentData, DocumentReference, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, type DocumentData, type DocumentReference, getDoc, onSnapshot } from 'firebase/firestore';
 import converter, { db, user } from './firebase';
-import { items, options } from '@/types/type';
+import { type items, type options } from '@/types/type';
 import { useEffect, useState } from 'react';
 
 export function useItem() {
@@ -35,7 +35,7 @@ export function useItem() {
           price: Docdata.price as number,
           category_id: Docdata.category_id as string,
           visible: Docdata.visible as boolean,
-          options: optionData as options[],
+          options: optionData,
           imgUrl: Docdata.imgUrl as string,
         };
 

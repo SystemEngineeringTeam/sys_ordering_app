@@ -35,11 +35,11 @@ const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCa
             return (
               <CartItemsCard
                 key={cartdata.timeStamp}
+                cart={cart}
                 InCartData={cartdata}
                 items={items}
                 options={options}
                 setCart={setCart}
-                cart={cart}
               />
             );
           })}

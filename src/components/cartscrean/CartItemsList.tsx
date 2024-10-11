@@ -24,11 +24,11 @@ const CartItemsList = () => {
             return (
               <CartItemsCard
                 key={cartdata.timeStamp}
+                cart={cart}
                 InCartData={cartdata}
                 items={items}
                 options={options}
                 setCart={setCart}
-                cart={cart}
               />
             );
           })}

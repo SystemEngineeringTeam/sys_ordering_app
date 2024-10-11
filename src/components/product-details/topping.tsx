@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { cartData, type options } from '@/types/type';
+import { type cartData, type options } from '@/types/type';
 
 interface ToppingProps {
   currentOptions: options[];
@@ -14,13 +14,13 @@ const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions, InCar
 
   useEffect(() => {
     if (typeof InCartData !== 'undefined') {
-      //ユーザーが選んだメニューのオプション
+      // ユーザーが選んだメニューのオプション
       const incItemOpt: string[] = InCartData.options;
 
-      //index番号の生成
+      // index番号の生成
       const sameOptionIndex = incItemOpt.map((optId: string) => currentOptions.map((opts) => opts.id).indexOf(optId));
 
-      //setOptionStates=(sameOptionIndex)
+      // setOptionStates=(sameOptionIndex)
       const changeOptData = optionStates.map((_, i) => sameOptionIndex.includes(i));
 
       setOptionStates(changeOptData);
@@ -35,7 +35,7 @@ const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions, InCar
     setOptionPriceAmount(
       selOpt.reduce((sum, e) => {
         console.log('topping', sum, e);
-        sum = sum + e.price;
+        sum += e.price;
         return sum;
       }, 0),
     );

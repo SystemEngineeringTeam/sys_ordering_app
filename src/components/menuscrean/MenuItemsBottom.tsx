@@ -9,7 +9,6 @@ import Badge from '@mui/material/Badge';
 import { type items, type options, type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
 import CartListBottom from './CartListBottom';
-import ItemPopup from '@/pages/ItemPopup';
 
 interface Props {
   items: items[];
@@ -83,11 +82,11 @@ const MenuItemsBottom = ({ items, options, itemId, cardOpen, setCardOpen, setCar
           </Button>
           <DialogBottom fullWidth onClose={handleClose} open={open}>
             <DrawerList
+              cardOpen={cardOpen}
               cart={cart}
+              itemId={itemId}
               items={items}
               options={options}
-              itemId={itemId}
-              cardOpen={cardOpen}
               setCardOpen={setCardOpen}
               setCart={setCart}
             />

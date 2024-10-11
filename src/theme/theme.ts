@@ -1,4 +1,4 @@
-import { createTheme, type PaletteColor, type PaletteColorOptions } from '@mui/material';
+import { createTheme, type PaletteColor, type PaletteColorOptions } from '@mui/material/styles';
 import { blue, green, red } from '@mui/material/colors';
 
 // MUIのテーマの型定義を拡張

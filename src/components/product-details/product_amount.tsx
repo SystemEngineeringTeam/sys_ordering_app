@@ -2,8 +2,8 @@ import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
-import { addCart, addNewData, deleteNewData, someArrayChecker } from '@/utils/addCart';
-import { cartData } from '@/types/type';
+import { addCart, deleteNewData } from '@/utils/addCart';
+import { type cartData } from '@/types/type';
 
 interface ProductAmountProps {
   onClose: () => void;
@@ -50,7 +50,7 @@ const ProductAmount = ({
     if (qty > 1) {
       setQty(qty - 1);
     } else {
-      setItemPriceAmount(0); //値段をリセット
+      setItemPriceAmount(0); // 値段をリセット
       setPrice(0); // 値段をリセット
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
