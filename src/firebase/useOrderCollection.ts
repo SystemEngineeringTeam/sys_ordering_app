@@ -7,7 +7,7 @@ export const setOrderCollection = async (
   orderData: orderData[],
   setSelectNum: React.Dispatch<React.SetStateAction<number>>,
 ) => {
-  const { uid } = user;
+  const { uid } = user
   try {
     //   トランザクションを実行して、新しいドキュメントIDを取得
     const newDocID = await runTransaction(db, async (transaction) => {
