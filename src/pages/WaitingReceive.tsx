@@ -1,16 +1,16 @@
 import Ordernumbar from '@/components/accounting/ordernumbar';
 import Precautions from '@/components/accounting/precautions';
 import WaitingPeople from '@/components/accounting/waiting_people';
+import { useLocation } from 'react-router-dom';
 
-interface Props {
-  selectNum: string;
-}
+const WaitingReceive = () => {
+  const location = useLocation();
+  const { selectNum } = location.state as { selectNum: number };
 
-const WaitingReceive = ({ selectNum }:Props) => {
   return (
     <div>
       <WaitingPeople />
-      <Ordernumbar selectNum={selectNum} />
+      <Ordernumbar selectNum={selectNum.toString()} />
       <Precautions />
     </div>
   );

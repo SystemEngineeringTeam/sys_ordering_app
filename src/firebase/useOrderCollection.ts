@@ -3,7 +3,10 @@ import { addDoc, collection, doc, runTransaction, setDoc } from 'firebase/firest
 import converter, { db, user } from './firebase';
 
 // 注文情報を追加する関数
-export const setOrderCollection = async (orderData: orderData[]) => {
+export const setOrderCollection = async (
+  orderData: orderData[],
+  setSelectNum: React.Dispatch<React.SetStateAction<number>>,
+) => {
   const { uid } = user;
   try {
     //   トランザクションを実行して、新しいドキュメントIDを取得
@@ -23,6 +26,9 @@ export const setOrderCollection = async (orderData: orderData[]) => {
 
       // 新しい番号をセット
       transaction.update(counterDocRef, { sequences: newNumber });
+
+      // 新
+      setSelectNum(newNumber);
 
       return newNumber;
     });
@@ -48,6 +54,8 @@ export const setOrderCollection = async (orderData: orderData[]) => {
       await addDoc(orderRef, data);
       console.log('zzz');
     });
+
+    return newDocID; // 新しいドキュメントIDを返す
   } catch (error) {
     console.error('Error adding document: ', error);
   }

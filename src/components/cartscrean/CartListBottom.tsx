@@ -18,7 +18,6 @@ const CartListBottom = ({ cart }: Props) => {
   const CartSumVal = SumData[1];
   const confirmOrder = (inCartData: cartData[]) => {
     const giveOrderData: orderData[] = processingCart(inCartData);
-    void setOrderCollection(giveOrderData);
     navigate('/waitingreceive');
   };
   return (
