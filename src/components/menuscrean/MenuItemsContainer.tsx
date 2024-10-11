@@ -18,7 +18,6 @@ interface Props {
 const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
   const [selectItemId, setSelectItemId] = useState('');
-  const [selectItemId, setSelectItemId] = useState('');
 
   const items = useItem() || [];
   const options = useOptions() || [];
@@ -39,11 +38,11 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId }: Props) =>
             </Grid>
           );
         })}
-        <ItemPopup cardOpen={cardOpen} cart={cart}
+        <ItemPopup
+          cardOpen={cardOpen}
+          cart={cart}
           itemId={selectItemId}
-         
           setCardOpen={setCardOpen}
-         
           setCart={setCart}
           kinds="add"
           InCartData={{
