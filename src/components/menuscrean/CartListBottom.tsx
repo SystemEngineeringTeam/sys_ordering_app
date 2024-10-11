@@ -1,40 +1,36 @@
-import { useState } from 'react';
-import { Dialog, DialogActions, Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import DrawerList from './DrawerList';
+import React, { useState } from 'react';
+import { Dialog, Button, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { type items, type options, type cartData } from '@/types/type';
+import { type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
-import CartListBottom from './CartListBottom';
+import CheckResult from './CheckResult';
 
 interface Props {
   cart: cartData[];
-  items: items[];
-  options: options[];
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const DialogBottom = styled(Dialog)(() => ({
+const DialogResult = styled(Dialog)(() => ({
   '& .MuiPaper-root': {
     position: 'fixed',
-    bottom: 0,
-    margin: 0,
-    width: '100%',
+    margin: 'auto',
+    width: '90%',
     maxWidth: '900px', // 必要に応じて調整
   },
 }));
 
-const MenuItemsBottom = ({ cart, items, options }: Props) => {
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+const CartListBottom = ({ cart, setOpen }: Props) => {
   const handleClose = () => {
     setOpen(false);
+  };
+  const [openResult, setOpenResult] = useState(false);
+  const handleClickOpenResult = () => {
+    setOpenResult(true);
+  };
+  const handleCloseResult = () => {
+    setOpenResult(false);
   };
 
   const SumData = getSum(cart);
@@ -66,26 +62,32 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             <Badge badgeContent={CartSumVal} color="error">
               <ShoppingCartIcon fontSize="large" />
             </Badge>
-            <Box sx={{ fontSize: '1.6rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
+            <Box sx={{ fontSize: '1.1rem', fontWeight: 'bold', pt: '5px', pl: '10px' }}>{CartSumPrice}円</Box>
           </Box>
           <Button
             color="warning"
-            onClick={handleClickOpen}
-            sx={{ margin: '3px', fontWeight: 'bold' }}
+            onClick={handleClose}
+            sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
             variant="contained"
           >
-            カートを見る
+            メニューに戻る
           </Button>
-          <DialogBottom fullWidth onClose={handleClose} open={open}>
-            <DrawerList cart={cart} items={items} options={options} />
-            <DialogActions>
-              <CartListBottom cart={cart} setOpen={setOpen} />
-            </DialogActions>
-          </DialogBottom>
+          <Box>
+            <Button
+              color="error"
+              onClick={handleClickOpenResult}
+              sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
+              variant="contained"
+            >
+              注文を確定
+            </Button>
+            <DialogResult fullWidth onClose={handleCloseResult} open={openResult}>
+              <CheckResult cart={cart} setOpenResult={setOpenResult} />
+            </DialogResult>
+          </Box>
         </AppBar>
       </Box>
     </div>
   );
 };
-
-export default MenuItemsBottom;
+export default CartListBottom;
