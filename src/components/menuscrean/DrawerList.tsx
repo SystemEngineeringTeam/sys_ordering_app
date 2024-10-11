@@ -1,8 +1,6 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import DrawerListCard from './DrawerListCard';
 import { type items, type options, type cartData } from '@/types/type';
-import { useNavigate } from 'react-router-dom';
+import CartItemsCard from '../cartscrean/CartItemsCard';
 
 interface Props {
   cart: cartData[];
@@ -21,7 +19,7 @@ const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCa
       <Box>
         <Box sx={{ fontSize: '1.1rem', textAlign: 'center', borderBottom: '1px solid #bdbdbd' }}>カート内の商品</Box>
         <Box sx={{ borderBottom: '1px solid #bdbdbd' }}>
-          <DrawerListCard cart={cart} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart} />
+          <DrawerListCard cart={cart} items={items} options={options} />
         </Box>
         <Button
           sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }}
