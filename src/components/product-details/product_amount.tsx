@@ -2,7 +2,7 @@ import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
-import { addCart, addNewData, deleteNewData, someArrayChecker } from '@/utils/addCart';
+import { addCart, addNewData, someArrayChecker } from '@/utils/addCart';
 import { cartData } from '@/types/type';
 
 interface ProductAmountProps {
@@ -18,9 +18,7 @@ interface ProductAmountProps {
   iconClose: () => void;
   cartPush: () => cartData;
   cart: cartData[];
-  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
-  InCartData: cartData;
-  kind: string;
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>
 }
 
 const ProductAmount = ({
@@ -36,9 +34,7 @@ const ProductAmount = ({
   iconClose,
   cartPush,
   cart,
-  setCart,
-  InCartData,
-  kind,
+  setCart
 }: ProductAmountProps) => {
   const itemPrice = currentItemPrice;
 
@@ -50,7 +46,7 @@ const ProductAmount = ({
     if (qty > 1) {
       setQty(qty - 1);
     } else {
-      setItemPriceAmount(0); //値段をリセット
+      setItemPriceAmount(0);//値段をリセット
       setPrice(0); // 値段をリセット
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
@@ -104,18 +100,9 @@ const ProductAmount = ({
       <Button
         onClick={() => {
           const NewCartData: cartData = cartPush();
-
-          console.log('new', NewCartData);
-
-          if (kind === 'edit') {
-            deleteNewData(InCartData, cart, setCart);
-          }
-
+          console.log("new", NewCartData);
           addCart(NewCartData, cart, setCart);
-          // カートに追加したらポップアップを閉じる
-          // cartの中のInCartDataを削除
           setPrice(0);
-          setQty(1);
           iconClose();
         }}
         sx={{
