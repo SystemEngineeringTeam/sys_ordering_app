@@ -1,7 +1,6 @@
 import { type items, type cartData, type options } from '@/types/type';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import DrawerOptionList from './DrawerOptionList';
 import { findItemName } from '@/utils/findItemName';
 import ItemPopup from '@/pages/ItemPopup';
 import { useEffect, useState } from 'react';
