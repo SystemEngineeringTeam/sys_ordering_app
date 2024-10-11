@@ -45,7 +45,7 @@ const AppLayout = () => {
         </Tabs>
       </Box>
       {/* コンテンツエリア */}
-      {activeCategory ? (
+      {activeCategory && activeCategory !== category[0] ? (
         <div>
           <MenuItemsContainer activeCategory={activeCategory} cart={cart} setCart={setCart} />
         </div>

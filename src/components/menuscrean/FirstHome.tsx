@@ -36,7 +36,7 @@ const FirstHome = () => {
               <Box sx={{ fontWeight: 'bold' }}>注文確定後に調理を開始します。</Box>
               <Box sx={{ fontWeight: 'bold' }}>
                 ご注文は<span style={{ color: 'orange' }}>確実にお受け取りが出来る時間に行うよう</span>
-                、ご協力お願いします。
+                、ご協力をお願いします。
               </Box>
             </Box>
           </Grid>
