@@ -1,15 +1,35 @@
 import { Box, Button, Stack, Divider } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { type options } from '@/types/type';
+import { cartData, type options } from '@/types/type';
 
 interface ToppingProps {
   currentOptions: options[];
   setOptionPriceAmount: React.Dispatch<React.SetStateAction<number>>;
   setSelectOptions: React.Dispatch<React.SetStateAction<options[]>>;
+  InCartData: cartData;
 }
 
-const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions }: ToppingProps) => {
+const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions, InCartData }: ToppingProps) => {
   const [optionStates, setOptionStates] = useState<boolean[]>(currentOptions.map(() => false)); // 各トッピングの初期状態を配列で管理
+
+  useEffect(() => {
+
+    if (typeof InCartData !== 'undefined') {
+
+      //ユーザーが選んだメニューのオプション
+      const incItemOpt: string[] = InCartData.options;
+
+      //index番号の生成
+      const sameOptionIndex = incItemOpt.map((optId: string) => currentOptions.map((opts) => opts.id).indexOf(optId));
+
+      //setOptionStates=(sameOptionIndex)
+      const changeOptData = optionStates.map((_, i) => sameOptionIndex.includes(i));
+
+      setOptionStates(changeOptData);
+    }
+
+  }, [])
+
   useEffect(() => {
     const selOpt = currentOptions.filter((e, index) => {
       return optionStates[index];

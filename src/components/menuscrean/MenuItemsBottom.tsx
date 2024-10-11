@@ -14,6 +14,10 @@ interface Props {
   cart: cartData[];
   items: items[];
   options: options[];
+  itemId: string;
+  cardOpen: boolean;
+  setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
 }
 
 const DialogBottom = styled(Dialog)(() => ({
@@ -26,7 +30,7 @@ const DialogBottom = styled(Dialog)(() => ({
   },
 }));
 
-const MenuItemsBottom = ({ cart, items, options }: Props) => {
+const MenuItemsBottom = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCart }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -76,8 +80,8 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
           >
             カートを見る
           </Button>
-          <DialogBottom fullWidth onClose={handleClose} open={open}>
-            <DrawerList cart={cart} items={items} options={options} />
+          <DialogBottom open={open} onClose={handleClose} fullWidth>
+            <DrawerList cart={cart} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart} />
             <DialogActions>
               <CartListBottom cart={cart} setOpen={setOpen} />
             </DialogActions>
