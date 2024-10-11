@@ -12,7 +12,7 @@ const App = () => {
         <Route element={<AppLayout />} path="/" />
         <Route element={<Home />} path="/a" />
         <Route element={<BeforeAccountin />} path="beforeaccountin" />
-        <Route element={<WaitingReceive />} path="waitingreceive" />
+        <Route element={<WaitingReceive  />} path="waitingreceive" />
         <Route element={<CartItemsList />} path="createitemlist" />
         <Route element={<div>Not Found</div>} path="*" />
       </Routes>

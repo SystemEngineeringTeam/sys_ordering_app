@@ -27,6 +27,11 @@ const CartListBottom = ({ cart, setOpen }: Props) => {
   };
   const [openResult, setOpenResult] = useState(false);
   const handleClickOpenResult = () => {
+    if (cart.length === 0) {
+      alert('カートに商品がありません');
+      return;
+    }
+
     setOpenResult(true);
   };
   const handleCloseResult = () => {

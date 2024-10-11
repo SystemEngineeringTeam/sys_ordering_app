@@ -20,7 +20,7 @@ const CheckResult = ({ cart, setOpenResult }: Props) => {
       void setOrderCollection(giveOrderData);
     } catch (e) {}
 
-    navigate('/waitingreceive');
+    navigate('/waitingreceive', {state: {selectNum:}});
   };
 
   return (
