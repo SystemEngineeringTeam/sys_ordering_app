@@ -6,7 +6,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import { type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
-import CheckResult from './checkResult';
+import CheckResult from './CheckResult';
 
 interface Props {
   cart: cartData[];
