@@ -17,7 +17,7 @@ interface Props {
 }
 
 const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, kinds }: Props) => {
-  const [qty, setQty] = useState(InCartData.qty ? InCartData.qty : 1);
+  const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);

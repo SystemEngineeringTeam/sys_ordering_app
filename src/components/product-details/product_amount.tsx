@@ -107,11 +107,11 @@ const ProductAmount = ({
 
           console.log('new', NewCartData);
 
+          addCart(NewCartData, cart, setCart);
+
           if (kind === 'edit') {
             deleteNewData(InCartData, cart, setCart);
           }
-
-          addCart(NewCartData, cart, setCart);
           // カートに追加したらポップアップを閉じる
           // cartの中のInCartDataを削除
           setPrice(0);
