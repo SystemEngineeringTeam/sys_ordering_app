@@ -12,9 +12,11 @@ interface Props {
   setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
   cart: cartData[];
+  InCartData: cartData;
+  kinds: string;
 }
 
-const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart }: Props) => {
+const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart,InCartData,kinds }: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);

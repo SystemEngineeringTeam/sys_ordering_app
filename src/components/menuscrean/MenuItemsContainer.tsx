@@ -37,7 +37,21 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
             </Grid>
           );
         })}
-        <ItemPopup cardOpen={cardOpen} cart={cart} itemId={selectItemId} setCardOpen={setCardOpen} setCart={setCart} />
+        <ItemPopup
+          cardOpen={cardOpen}
+          cart={cart}
+          itemId={selectItemId}
+          setCardOpen={setCardOpen}
+          setCart={setCart}
+          kinds="add"
+          InCartData={{
+            itemId: '',
+            qty: 0,
+            options: [],
+            amountPrice: 0,
+            timeStamp: 0,
+          }}
+        />
         <MenuItemsBottom cart={cart} items={items} options={options} />
       </Grid>
     </div>
