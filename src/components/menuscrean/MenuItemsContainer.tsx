@@ -16,8 +16,7 @@ interface Props {
 
 const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
-  const [selectItemId,setSelectItemId] = useState('')
-
+  const [selectItemId, setSelectItemId] = useState('');
 
   const items = useItem() || [];
   const options = useOptions() || [];
@@ -28,18 +27,40 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
       <Grid container spacing={2} sx={{ padding: '3%', pb: '85px' }}>
         {selectItems.map((item) => {
           return (
-            <Grid size={{ xs: 6, md: 4 }} key={item.id}>
+            <Grid key={item.id} size={{ xs: 6, md: 4 }}>
               <MenuItemsCards
-                item={item}
                 cardOpen={cardOpen}
+                item={item}
                 setCardOpen={setCardOpen}
                 setSelectItemId={setSelectItemId}
               />
             </Grid>
           );
         })}
-        <ItemPopup itemId={selectItemId} cardOpen={cardOpen} setCardOpen={setCardOpen} cart={cart} setCart={setCart} />
-        <MenuItemsBottom cart={cart} items={items} options={options} />
+        <ItemPopup
+          cardOpen={cardOpen}
+          cart={cart}
+          InCartData={{
+            itemId: '',
+            qty: 0,
+            options: [],
+            amountPrice: 0,
+            timeStamp: 0,
+          }}
+          itemId={selectItemId}
+          kinds="add"
+          setCardOpen={setCardOpen}
+          setCart={setCart}
+        />
+        <MenuItemsBottom
+          cardOpen={cardOpen}
+          cart={cart}
+          itemId={selectItemId}
+          items={items}
+          options={options}
+          setCardOpen={setCardOpen}
+          setCart={setCart}
+        />
       </Grid>
     </div>
   );

@@ -67,7 +67,7 @@ export interface order {
 }
 export interface orderData {
   item: DocumentReference<DocumentData, DocumentData>;
-  options: DocumentReference<DocumentData, DocumentData>[];
+  options: Array<DocumentReference<DocumentData, DocumentData>>;
   qty: number;
 }
 

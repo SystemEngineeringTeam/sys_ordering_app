@@ -18,7 +18,6 @@ const CartListBottom = ({ cart }: Props) => {
   const CartSumVal = SumData[1];
   const confirmOrder = (inCartData: cartData[]) => {
     const giveOrderData: orderData[] = processingCart(inCartData);
-    void setOrderCollection(giveOrderData);
     navigate('/waitingreceive');
   };
   return (
@@ -30,12 +29,12 @@ const CartListBottom = ({ cart }: Props) => {
             <Box sx={{ fontSize: '1.7rem' }}>{CartSumPrice}円</Box>
           </Box>
           <Button
-            sx={{ margin: '3px', fontWeight: 'bold' }}
-            variant="contained"
             color="warning"
             onClick={() => {
               confirmOrder(cart);
             }}
+            sx={{ margin: '3px', fontWeight: 'bold' }}
+            variant="contained"
           >
             注文を確定
           </Button>
