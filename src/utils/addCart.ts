@@ -23,6 +23,7 @@ export function addCart(
   NewCartData: cartData,
   Cart: cartData[],
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>,
+  kind: string,
 ) {
   NewCartData.options.sort();
   if (Cart.length === undefined) {
@@ -51,14 +52,26 @@ export function addCart(
   const SomeCartDataIndex = Cart.findIndex(
     (cartData) => cartData.timeStamp === SomeNameItemsFil[SomeItemIndex].timeStamp,
   );
-  const UpdateCartData: cartData = {
-    itemId: Cart[SomeCartDataIndex].itemId,
-    options: Cart[SomeCartDataIndex].options,
-    qty: Cart[SomeCartDataIndex].qty + NewCartData.qty,
-    amountPrice: Cart[SomeCartDataIndex].amountPrice + NewCartData.amountPrice,
-    timeStamp: new Date().getTime(),
-  };
-  Cart[SomeCartDataIndex] = UpdateCartData;
+
+  if (kind === 'edit') {
+    const UpdateCartData: cartData = {
+      itemId: Cart[SomeCartDataIndex].itemId,
+      options: Cart[SomeCartDataIndex].options,
+      qty: NewCartData.qty,
+      amountPrice: NewCartData.amountPrice,
+      timeStamp: new Date().getTime(),
+    };
+    Cart[SomeCartDataIndex] = UpdateCartData;
+  } else {
+    const UpdateCartData: cartData = {
+      itemId: Cart[SomeCartDataIndex].itemId,
+      options: Cart[SomeCartDataIndex].options,
+      qty: Cart[SomeCartDataIndex].qty + NewCartData.qty,
+      amountPrice: Cart[SomeCartDataIndex].amountPrice + NewCartData.amountPrice,
+      timeStamp: new Date().getTime(),
+    };
+    Cart[SomeCartDataIndex] = UpdateCartData;
+  }
 }
 
 export function deleteNewData(
