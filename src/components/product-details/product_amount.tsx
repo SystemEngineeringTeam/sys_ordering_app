@@ -50,6 +50,13 @@ const ProductAmount = ({
     if (qty > 1) {
       setQty(qty - 1);
     } else {
+      if (kind === 'edit') {
+        // カートの中のInCartDataを削除
+        deleteNewData(InCartData, cart, setCart);
+        setItemPriceAmount(0); //値段をリセット
+        setPrice(0); // 値段をリセット
+        onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
+      }
       setItemPriceAmount(0); //値段をリセット
       setPrice(0); // 値段をリセット
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
@@ -107,11 +114,11 @@ const ProductAmount = ({
 
           console.log('new', NewCartData);
 
+          addCart(NewCartData, cart, setCart);
+
           if (kind === 'edit') {
             deleteNewData(InCartData, cart, setCart);
           }
-
-          addCart(NewCartData, cart, setCart);
           // カートに追加したらポップアップを閉じる
           // cartの中のInCartDataを削除
           setPrice(0);

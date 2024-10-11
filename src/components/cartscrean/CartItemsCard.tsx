@@ -31,7 +31,7 @@ const CartItemsCard = ({ InCartData, items, options, setCart, cart }: Props) => 
   };
 
   useEffect(() => {
-    console.log(`cartが変わった${cart}`);
+    console.log('cartが変わった');
   }, [cart]);
 
   return (

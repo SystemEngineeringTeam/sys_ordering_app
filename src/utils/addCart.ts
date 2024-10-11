@@ -66,7 +66,8 @@ export function deleteNewData(
   Cart: cartData[],
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>,
 ) {
-  // Cartの中にNewCartDaを削除する
+  const NewCart = Cart.filter((cartData) => cartData.timeStamp !== NewCartData.timeStamp);
+  setCart(NewCart);
 }
 
 export function deleteCart(
