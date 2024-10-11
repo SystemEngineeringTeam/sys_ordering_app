@@ -34,7 +34,11 @@ const MenuItemsBottom = ({ items, options, itemId, cardOpen, setCardOpen, setCar
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (cart.length === 0) {
+      alert('カートに商品がありません');
+      return;
+    }
+  s
   };
 
   const handleClose = () => {

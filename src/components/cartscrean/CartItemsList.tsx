@@ -1,9 +1,9 @@
-import Box from '@mui/material/Box';
 import CartItemsCard from './CartItemsCard';
 import CartListTop from './CartListTop';
 import CartListBottom from './CartListBottom';
 import { type cartData, type items, type options } from '@/types/type';
 import { useLocation } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 interface State {
   items: items[];

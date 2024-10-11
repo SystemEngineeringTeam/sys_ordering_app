@@ -3,11 +3,11 @@ import { type cartData, type items, type options } from '@/types/type';
 import { findItemImg } from '@/utils/findItemImg';
 import { findItemName } from '@/utils/findItemName';
 import EditIcon from '@mui/icons-material/Edit';
-import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useState } from 'react';
 import CartItemOption from './CartItemOption';
+import Box from '@mui/material/Box';
 
 interface Props {
   InCartData: cartData;
