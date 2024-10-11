@@ -9,11 +9,16 @@ import Badge from '@mui/material/Badge';
 import { type items, type options, type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
 import CartListBottom from './CartListBottom';
+import ItemPopup from '@/pages/ItemPopup';
 
 interface Props {
-  cart: cartData[];
   items: items[];
   options: options[];
+  itemId: string;
+  cardOpen: boolean;
+  setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
+  cart: cartData[];
 }
 
 const DialogBottom = styled(Dialog)(() => ({
@@ -26,7 +31,7 @@ const DialogBottom = styled(Dialog)(() => ({
   },
 }));
 
-const MenuItemsBottom = ({ cart, items, options }: Props) => {
+const MenuItemsBottom = ({ items, options, itemId, cardOpen, setCardOpen, setCart, cart }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -77,7 +82,15 @@ const MenuItemsBottom = ({ cart, items, options }: Props) => {
             カートを見る
           </Button>
           <DialogBottom fullWidth onClose={handleClose} open={open}>
-            <DrawerList cart={cart} items={items} options={options} />
+            <DrawerList
+              cart={cart}
+              items={items}
+              options={options}
+              itemId={itemId}
+              cardOpen={cardOpen}
+              setCardOpen={setCardOpen}
+              setCart={setCart}
+            />
             <DialogActions>
               <CartListBottom cart={cart} setOpen={setOpen} />
             </DialogActions>

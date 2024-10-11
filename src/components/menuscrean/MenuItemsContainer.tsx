@@ -52,7 +52,15 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart }: Props) => {
             timeStamp: 0,
           }}
         />
-        <MenuItemsBottom cart={cart} items={items} options={options} />
+        <MenuItemsBottom
+          cart={cart}
+          items={items}
+          options={options}
+          itemId={selectItemId}
+          cardOpen={cardOpen}
+          setCardOpen={setCardOpen}
+          setCart={setCart}
+        />
       </Grid>
     </div>
   );

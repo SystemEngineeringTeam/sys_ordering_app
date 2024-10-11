@@ -1,10 +1,10 @@
 import ProductAmount from '@/components/product-details/product_amount';
 import ProductPicture from '@/components/product-details/product_picture';
 import Topping from '@/components/product-details/topping';
-import { type items, type options, type options_id, type cartData } from '@/types/type';
+import { type cartData, type items, type options } from '@/types/type';
 import ProductItems from '@/utils/productItems';
 import { Card, CardContent, Dialog, DialogContent } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
   itemId: string;
@@ -16,15 +16,18 @@ interface Props {
   kinds: string;
 }
 
-const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart,InCartData,kinds }: Props) => {
-  const [qty, setQty] = useState(1);
+const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, kinds }: Props) => {
+  const [qty, setQty] = useState(InCartData.qty ? InCartData.qty : 1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
   const [selectOptions, setSelectOptions] = useState<options[]>([]);
-  useEffect(() => {
-  }, [optionPriceAmount])
-  // 商品情報を取得
+
+  console.log('giuahihwauihfiuwa');
+
+  console.log('IDq9581', itemId);
+
+  // itemIDに一致するitemの取得
   const currentItem: items | null = ProductItems(itemId);
 
   // itemのオプションを取得
@@ -42,20 +45,18 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart,InCartData,kin
       timeStamp: nowTime,
     };
 
-    console.log('itemData1234' + itemData)
+    console.log('itemData1234' + itemData);
     console.log('timeStamp', itemData.timeStamp);
     return itemData;
   };
 
-
-  const handleClose = () => { };
+  const handleClose = () => {};
   const iconClose = () => {
     setCardOpen(false);
   };
 
   return (
     <>
-
       <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={cardOpen}>
         <DialogContent>
           <Card>
@@ -66,6 +67,7 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart,InCartData,kin
                 currentOptions={currentOptions}
                 setOptionPriceAmount={setOptionPriceAmount}
                 setSelectOptions={setSelectOptions}
+                InCartData={InCartData}
               />
               <ProductAmount
                 cartPush={cartPush}
@@ -81,6 +83,8 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart,InCartData,kin
                 setQty={setQty}
                 cart={cart}
                 setCart={setCart}
+                InCartData={InCartData}
+                kind={kinds}
               />
             </CardContent>
           </Card>

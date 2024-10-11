@@ -9,18 +9,28 @@ interface State {
   items: items[];
   cart: cartData[];
   options: options[];
+  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
 }
 
 const CartItemsList = () => {
   const location = useLocation();
-  const { items, cart, options } = location.state as State;
+  const { items, cart, options, setCart } = location.state as State;
   return (
     <div>
       <CartListTop />
       <Box sx={{ pb: '120px' }}>
         <Box>
           {cart.map((cartdata) => {
-            return <CartItemsCard InCartData={cartdata} items={items} options={options} />;
+            return (
+              <CartItemsCard
+                key={cartdata.timeStamp}
+                InCartData={cartdata}
+                items={items}
+                options={options}
+                setCart={setCart}
+                cart={cart}
+              />
+            );
           })}
         </Box>
       </Box>
