@@ -34,7 +34,6 @@ const Topping = ({ currentOptions, setOptionPriceAmount, setSelectOptions, InCar
     setSelectOptions(selOpt);
     setOptionPriceAmount(
       selOpt.reduce((sum, e) => {
-        console.log('topping', sum, e);
         sum += e.price;
         return sum;
       }, 0),

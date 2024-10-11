@@ -5,7 +5,7 @@ import { findItemName } from '@/utils/findItemName';
 import EditIcon from '@mui/icons-material/Edit';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CartItemOption from './CartItemOption';
 import Box from '@mui/material/Box';
 
@@ -23,16 +23,8 @@ const CartItemsCard = ({ InCartData, items, options, setCart, cart }: Props) => 
   const itemImage = findItemImg(InCartData.itemId, items);
 
   const handleChengeClick = () => {
-    console.log('変更！！！');
-    console.log(`itemID%う５雨１５${InCartData.itemId}`);
-    console.log(`cart###${cart}`);
-
     setEditDaialogOpen(true);
   };
-
-  useEffect(() => {
-    console.log('cartが変わった');
-  }, [cart]);
 
   return (
     <div>

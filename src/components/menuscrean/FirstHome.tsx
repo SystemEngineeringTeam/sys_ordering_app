@@ -4,6 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid2';
 
 const FirstHome = () => {
+  console.log('このログを見たらこのwebサイトを5人に広めなければなりません。');
   return (
     <div>
       <Box>

@@ -52,7 +52,6 @@ export const setOrderCollection = async (
 
     orderData.forEach(async (data) => {
       await addDoc(orderRef, data);
-      console.log('zzz');
     });
 
     return newDocID; // 新しいドキュメントIDを返す

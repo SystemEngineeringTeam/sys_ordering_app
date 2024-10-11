@@ -53,8 +53,6 @@ export const useOptions = () => {
       });
     });
 
-    console.log('optionsChange');
-
     return () => {
       unsub();
     };

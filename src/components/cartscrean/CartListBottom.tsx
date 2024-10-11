@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import { type orderData, type cartData } from '@/types/type';
 import { getSum } from '@/utils/getSum';
 import { useNavigate } from 'react-router-dom';
-import { setOrderCollection } from '@/firebase/useOrderCollection';
 import { processingCart } from '@/firebase/setOrder';
 
 interface Props {

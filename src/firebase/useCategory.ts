@@ -45,8 +45,6 @@ export const useCategory = () => {
       });
     });
 
-    console.log('categoryChange');
-
     return () => {
       unsb(); // クリーンアップ処理でリスナー解除
     };

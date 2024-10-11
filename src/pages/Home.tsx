@@ -4,11 +4,8 @@ import { useOptions } from '@/firebase/useOptions';
 
 const Home = () => {
   const options = useOptions();
-  console.log(options);
   const items = useItem();
-  console.log(items);
   const category = useCategory();
-  console.log(category);
 
   return (
     <div>

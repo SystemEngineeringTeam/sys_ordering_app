@@ -23,10 +23,6 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, k
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
   const [selectOptions, setSelectOptions] = useState<options[]>([]);
 
-  console.log('giuahihwauihfiuwa');
-
-  console.log('IDq9581', itemId);
-
   // itemIDに一致するitemの取得
   const currentItem: items | null = ProductItems(itemId);
 
@@ -45,8 +41,6 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, k
       timeStamp: nowTime,
     };
 
-    console.log(`itemData1234${itemData}`);
-    console.log('timeStamp', itemData.timeStamp);
     return itemData;
   };
 

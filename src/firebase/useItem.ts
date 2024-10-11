@@ -70,9 +70,6 @@ export function useItem() {
       });
     });
 
-    console.log('Changed!!!');
-    // const newData = snapshot.docs.map((doc) => doc.data() as orderCollection);
-    // setData(newData);
     return () => {
       unsub();
     };

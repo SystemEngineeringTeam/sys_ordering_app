@@ -18,7 +18,7 @@ const CheckResult = ({ cart, setOpenResult }: Props) => {
   // numが入ったら画面遷移
   useEffect(() => {
     if (selectNum !== 0) {
-      navigate('/waitingreceive', { state: { selectNum: selectNum } });
+      navigate('/waitingreceive', { state: { selectNum } });
     }
   }, [selectNum]);
 

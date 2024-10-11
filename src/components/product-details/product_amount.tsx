@@ -2,8 +2,8 @@ import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
-import { addCart, addNewData, deleteNewData, someArrayChecker } from '@/utils/addCart';
-import { cartData } from '@/types/type';
+import { addCart, deleteNewData } from '@/utils/addCart';
+import { type cartData } from '@/types/type';
 
 interface ProductAmountProps {
   onClose: () => void;
@@ -53,11 +53,11 @@ const ProductAmount = ({
       if (kind === 'edit') {
         // カートの中のInCartDataを削除
         deleteNewData(InCartData, cart, setCart);
-        setItemPriceAmount(0); //値段をリセット
+        setItemPriceAmount(0); // 値段をリセット
         setPrice(0); // 値段をリセット
         onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
       }
-      setItemPriceAmount(0); //値段をリセット
+      setItemPriceAmount(0); // 値段をリセット
       setPrice(0); // 値段をリセット
       onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
     }
@@ -112,9 +112,7 @@ const ProductAmount = ({
         onClick={() => {
           const NewCartData: cartData = cartPush();
 
-          console.log('new', NewCartData);
-
-          addCart(NewCartData, cart, setCart,kind);
+          addCart(NewCartData, cart, setCart, kind);
 
           if (kind === 'edit') {
             deleteNewData(InCartData, cart, setCart);
