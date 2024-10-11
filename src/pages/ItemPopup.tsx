@@ -13,16 +13,20 @@ interface Props {
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
   cart: cartData[];
   InCartData: cartData;
+  kinds: string;
 }
 
-const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData }: Props) => {
+const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData, kinds }: Props) => {
   const [qty, setQty] = useState(1);
   const [price, setPrice] = useState(0);
   const [optionPriceAmount, setOptionPriceAmount] = useState(0);
   const [itemPriceAmount, setItemPriceAmount] = useState(0);
   const [selectOptions, setSelectOptions] = useState<options[]>([]);
-  useEffect(() => {
-  }, [optionPriceAmount])
+
+  console.log('giuahihwauihfiuwa');
+
+  console.log('IDq9581', itemId);
+
   // itemIDに一致するitemの取得
   const currentItem: items | null = ProductItems(itemId);
 
@@ -41,20 +45,18 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData }:
       timeStamp: nowTime,
     };
 
-    console.log('itemData1234' + itemData)
+    console.log('itemData1234' + itemData);
     console.log('timeStamp', itemData.timeStamp);
     return itemData;
   };
 
-
-  const handleClose = () => { };
+  const handleClose = () => {};
   const iconClose = () => {
     setCardOpen(false);
   };
 
   return (
     <>
-
       <Dialog fullWidth maxWidth="sm" onClose={handleClose} open={cardOpen}>
         <DialogContent>
           <Card>
@@ -81,6 +83,8 @@ const ItemPopup = ({ itemId, cardOpen, setCardOpen, cart, setCart, InCartData }:
                 setQty={setQty}
                 cart={cart}
                 setCart={setCart}
+                InCartData={InCartData}
+                kind={kinds}
               />
             </CardContent>
           </Card>

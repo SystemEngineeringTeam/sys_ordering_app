@@ -13,6 +13,10 @@ interface Props {
 }
 
 const CartItemsCard = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCart }: Props) => {
+  console.log('cart%%%%%%' + cart);
+  console.log('cart aga%%%%%%' + cart.map((cartdata) => cartdata.itemId));
+  console.log({ cart });
+
   return (
     <div>
       <Box>
@@ -20,7 +24,16 @@ const CartItemsCard = ({ cart, items, options, itemId, cardOpen, setCardOpen, se
           {cart.map((cartdata) => {
             return (
               <Box key={cartdata.timeStamp}>
-                <DrawerCardItem InCartData={cartdata} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart} cart={[]} />
+                <DrawerCardItem
+                  InCartData={cartdata}
+                  items={items}
+                  options={options}
+                  itemId={itemId}
+                  cardOpen={cardOpen}
+                  setCardOpen={setCardOpen}
+                  setCart={setCart}
+                  cart={cart}
+                />
               </Box>
             );
           })}

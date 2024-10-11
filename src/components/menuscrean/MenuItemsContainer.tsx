@@ -15,10 +15,9 @@ interface Props {
   itemId: string;
 }
 
-const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId, }: Props) => {
+const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId }: Props) => {
   const [cardOpen, setCardOpen] = useState(false);
-  const [selectItemId, setSelectItemId] = useState('')
-
+  const [selectItemId, setSelectItemId] = useState('');
 
   const items = useItem() || [];
   const options = useOptions() || [];
@@ -39,8 +38,29 @@ const MenuItemsContainer = ({ activeCategory, cart, setCart, itemId, }: Props) =
             </Grid>
           );
         })}
-        <ItemPopup itemId={selectItemId} cardOpen={cardOpen} setCardOpen={setCardOpen} cart={cart} setCart={setCart} />
-        <MenuItemsBottom cart={cart} items={items} options={options} itemId={itemId} cardOpen={cardOpen} setCardOpen={setCardOpen} setCart={setCart}
+        <ItemPopup
+          itemId={selectItemId}
+          cardOpen={cardOpen}
+          setCardOpen={setCardOpen}
+          cart={cart}
+          setCart={setCart}
+          kinds="add"
+          InCartData={{
+            itemId: '',
+            qty: 0,
+            options: [],
+            amountPrice: 0,
+            timeStamp: 0,
+          }}
+        />
+        <MenuItemsBottom
+          cart={cart}
+          items={items}
+          options={options}
+          itemId={itemId}
+          cardOpen={cardOpen}
+          setCardOpen={setCardOpen}
+          setCart={setCart}
         />
       </Grid>
     </div>
