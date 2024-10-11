@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 
 // category のデータをリアルタイムで取得する関数
 export const useCategory = () => {
-  const [category, setCategory] = useState<category[]>([]);
+  const home: category = {
+    id: '1oCkzsvqyFSqxaDIAOMz',
+    name: 'ホーム',
+  };
+  const [category, setCategory] = useState<category[]>([home]);
 
   const colRef = collection(db, 'shop_user', user.uid, 'category').withConverter(converter<category>());
 

@@ -37,5 +37,5 @@ export default function converter<T>() {
 }
 
 export const user = {
-  uid: 'sysPay00',
+  uid: 'Vk9F4AD83nSWDaWTHcJEZwpPkpi2',
 };
