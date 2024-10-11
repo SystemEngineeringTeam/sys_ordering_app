@@ -38,7 +38,7 @@ const MenuItemsBottom = ({ items, options, itemId, cardOpen, setCardOpen, setCar
       alert('カートに商品がありません');
       return;
     }
-  s
+    setOpen(true);
   };
 
   const handleClose = () => {
