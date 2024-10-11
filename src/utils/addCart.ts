@@ -105,13 +105,14 @@ export function deleteCart(
   const UpdateCartData: cartData = {
     itemId: Cart[SomeCartDataIndex].itemId,
     options: Cart[SomeCartDataIndex].options,
-    qty: Cart[SomeCartDataIndex].qty - NewCartData.qty,
-    amountPrice: Cart[SomeCartDataIndex].amountPrice - NewCartData.amountPrice,
+    qty: NewCartData.qty,
+    amountPrice: NewCartData.amountPrice,
     timeStamp: new Date().getTime(),
   };
   if (UpdateCartData.qty === 0) {
     deleteNewData(NewCartData, Cart, setCart);
     return;
   }
+
   Cart[SomeCartDataIndex] = UpdateCartData;
 }
