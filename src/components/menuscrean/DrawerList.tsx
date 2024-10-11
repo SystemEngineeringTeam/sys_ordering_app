@@ -6,31 +6,31 @@ interface Props {
   cart: cartData[];
   items: items[];
   options: options[];
-  itemId: string;
-  cardOpen: boolean;
-  setCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
 }
 
-const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCart }: Props) => {
-  const navigate = useNavigate();
+const DrawerList = ({ cart, items, options }: Props) => {
   return (
     <div>
       <Box>
-        <Box sx={{ fontSize: '1.1rem', textAlign: 'center', borderBottom: '1px solid #bdbdbd' }}>カート内の商品</Box>
-        <Box sx={{ borderBottom: '1px solid #bdbdbd' }}>
-          <DrawerListCard cart={cart} items={items} options={options} />
-        </Box>
-        <Button
-          sx={{ mt: '3%', ml: '5%', fontWeight: 'bold', width: '90%' }}
-          variant="contained"
-          color="warning"
-          onClick={() => {
-            navigate('/createitemlist', { state: { items, cart, options } });
+        <Box
+          enableColorOnDark
+          position="sticky"
+          sx={{
+            fontSize: '1.5rem',
+            textAlign: 'center',
+            borderBottom: '1px solid #bdbdbd',
+            backgroundColor: '#fff',
+            top: 0,
+            zIndex: 2,
           }}
         >
-          レジに進む
-        </Button>
+          ご注文内容の確認
+        </Box>
+        <Box sx={{ pb: '50px', zIndex: 1 }}>
+          {cart.map((cartdata) => {
+            return <CartItemsCard key={cartdata.timeStamp} InCartData={cartdata} items={items} options={options} />;
+          })}
+        </Box>
       </Box>
     </div>
   );
