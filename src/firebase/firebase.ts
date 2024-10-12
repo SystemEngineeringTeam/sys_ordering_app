@@ -37,5 +37,5 @@ export default function converter<T>() {
 }
 
 export const user = {
-  uid: 'Vk9F4AD83nSWDaWTHcJEZwpPkpi2',
+  uid: 'xH2Upf5lmHNbhkIvKjqT9GURpa03',
 };
