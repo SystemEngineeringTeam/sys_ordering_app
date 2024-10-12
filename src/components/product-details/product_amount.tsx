@@ -2,7 +2,7 @@ import { Delete, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect } from 'react';
-import { addCart, addNewData, deleteNewData, someArrayChecker } from '@/utils/addCart';
+import { addCart, addNewData, deleteCart, deleteNewData, someArrayChecker } from '@/utils/addCart';
 import { cartData } from '@/types/type';
 
 interface ProductAmountProps {
@@ -52,7 +52,7 @@ const ProductAmount = ({
     } else {
       if (kind === 'edit') {
         // カートの中のInCartDataを削除
-        deleteNewData(InCartData, cart, setCart);
+        deleteCart(InCartData, cart, setCart);
         setItemPriceAmount(0); //値段をリセット
         setPrice(0); // 値段をリセット
         onClose(); // 数量が1の時に減算ボタンが押されたらポップアップを閉じる
@@ -114,11 +114,11 @@ const ProductAmount = ({
 
           console.log('new', NewCartData);
 
-          addCart(NewCartData, cart, setCart,kind);
-
           if (kind === 'edit') {
-            deleteNewData(InCartData, cart, setCart);
+            deleteCart(InCartData, cart, setCart);
           }
+
+          addCart(NewCartData, cart, setCart, kind);
           // カートに追加したらポップアップを閉じる
           // cartの中のInCartDataを削除
           setPrice(0);

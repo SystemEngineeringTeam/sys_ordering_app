@@ -53,25 +53,25 @@ export function addCart(
     (cartData) => cartData.timeStamp === SomeNameItemsFil[SomeItemIndex].timeStamp,
   );
 
-  if (kind === 'edit') {
-    const UpdateCartData: cartData = {
-      itemId: Cart[SomeCartDataIndex].itemId,
-      options: Cart[SomeCartDataIndex].options,
-      qty: NewCartData.qty,
-      amountPrice: NewCartData.amountPrice,
-      timeStamp: new Date().getTime(),
-    };
-    Cart[SomeCartDataIndex] = UpdateCartData;
-  } else {
-    const UpdateCartData: cartData = {
-      itemId: Cart[SomeCartDataIndex].itemId,
-      options: Cart[SomeCartDataIndex].options,
-      qty: Cart[SomeCartDataIndex].qty + NewCartData.qty,
-      amountPrice: Cart[SomeCartDataIndex].amountPrice + NewCartData.amountPrice,
-      timeStamp: new Date().getTime(),
-    };
-    Cart[SomeCartDataIndex] = UpdateCartData;
-  }
+  // if (kind === 'edit') {
+  //   const UpdateCartData: cartData = {
+  //     itemId: Cart[SomeCartDataIndex].itemId,
+  //     options: Cart[SomeCartDataIndex].options,
+  //     qty: NewCartData.qty,
+  //     amountPrice: NewCartData.amountPrice,
+  //     timeStamp: new Date().getTime(),
+  //   };
+  //   Cart[SomeCartDataIndex] = UpdateCartData;
+  // } else {
+  const UpdateCartData: cartData = {
+    itemId: Cart[SomeCartDataIndex].itemId,
+    options: Cart[SomeCartDataIndex].options,
+    qty: Cart[SomeCartDataIndex].qty + NewCartData.qty,
+    amountPrice: Cart[SomeCartDataIndex].amountPrice + NewCartData.amountPrice,
+    timeStamp: new Date().getTime(),
+  };
+  Cart[SomeCartDataIndex] = UpdateCartData;
+  // }
 }
 
 export function deleteNewData(
@@ -84,48 +84,46 @@ export function deleteNewData(
 }
 
 export function deleteCart(
-  NewCartData: cartData,
+  InCartData: cartData,
   Cart: cartData[],
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>,
 ) {
-  NewCartData.options.sort();
+  InCartData.options.sort();
   if (Cart.length === undefined) {
-    deleteCart(NewCartData, Cart, setCart);
     return;
   }
   const InCartItemId = Cart.map((cartData) => cartData.itemId);
-  const ItemCheckArr = InCartItemId.filter((itemId) => itemId === NewCartData.itemId);
+  const ItemCheckArr = InCartItemId.filter((itemId) => itemId === InCartData.itemId);
   if (ItemCheckArr.length === 0) {
-    deleteCart(NewCartData, Cart, setCart);
     return;
   }
-  const SomeNameItems = Cart.filter((cartData) => cartData.itemId === NewCartData.itemId);
-  const SomeNameItemsFil = SomeNameItems.filter((cartData) => cartData.options.length === NewCartData.options.length);
+  const SomeNameItems = Cart.filter((cartData) => cartData.itemId === InCartData.itemId);
+  const SomeNameItemsFil = SomeNameItems.filter((cartData) => cartData.options.length === InCartData.options.length);
   if (SomeNameItemsFil === undefined) {
-    deleteCart(NewCartData, Cart, setCart);
     return;
   }
   const SomeItemIndex = SomeNameItemsFil.findIndex(
-    (cartData) => someArrayChecker(cartData.options, NewCartData.options) === 1,
+    (cartData) => someArrayChecker(cartData.options, InCartData.options) === 1,
   );
   if (SomeItemIndex === -1) {
-    deleteCart(NewCartData, Cart, setCart);
     return;
   }
   const SomeCartDataIndex = Cart.findIndex(
     (cartData) => cartData.timeStamp === SomeNameItemsFil[SomeItemIndex].timeStamp,
   );
-  const UpdateCartData: cartData = {
-    itemId: Cart[SomeCartDataIndex].itemId,
-    options: Cart[SomeCartDataIndex].options,
-    qty: NewCartData.qty,
-    amountPrice: NewCartData.amountPrice,
-    timeStamp: new Date().getTime(),
-  };
-  if (UpdateCartData.qty === 0) {
-    deleteNewData(NewCartData, Cart, setCart);
-    return;
-  }
+  // const UpdateCartData: cartData = {
+  //   itemId: Cart[SomeCartDataIndex].itemId,
+  //   options: Cart[SomeCartDataIndex].options,
+  //   qty: NewCartData.qty,
+  //   amountPrice: NewCartData.amountPrice,
+  //   timeStamp: new Date().getTime(),
+  // };
+  // if (UpdateCartData.qty === 0) {
+  //   deleteNewData(NewCartData, Cart, setCart);
+  //   return;
+  // }
 
-  Cart[SomeCartDataIndex] = UpdateCartData;
+  const deliteNewCart = Cart.splice(SomeCartDataIndex, 1);
+
+  setCart(deliteNewCart);
 }

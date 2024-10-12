@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { type items, type options, type cartData } from '@/types/type';
 import CartItemsCard from '../cartscrean/CartItemsCard';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 interface Props {
   cart: cartData[];
@@ -14,9 +14,8 @@ interface Props {
 }
 
 const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCart }: Props) => {
-  useEffect(() => {
-    console.log(`cartが変わった${cart}`);
-  }, [cart]);
+
+  const [editDaialogOpen, setEditDaialogOpen] = useState(false);
 
   return (
     <div>
@@ -45,6 +44,8 @@ const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCa
                 items={items}
                 options={options}
                 setCart={setCart}
+                editDaialogOpen={editDaialogOpen}
+                setEditDaialogOpen={setEditDaialogOpen}
               />
             );
           })}

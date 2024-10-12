@@ -15,24 +15,21 @@ interface Props {
   options: options[];
   setCart: React.Dispatch<React.SetStateAction<cartData[]>>;
   cart: cartData[];
+  editDaialogOpen: boolean;
+  setEditDaialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CartItemsCard = ({ InCartData, items, options, setCart, cart }: Props) => {
-  const [editDaialogOpen, setEditDaialogOpen] = useState(false);
+const CartItemsCard = ({ InCartData, items, options, setCart, cart, editDaialogOpen, setEditDaialogOpen }: Props) => {
+  // const [editDaialogOpen, setEditDaialogOpen] = useState(false);
   const itemName = findItemName(InCartData.itemId, items);
   const itemImage = findItemImg(InCartData.itemId, items);
 
+  // 編集ボタンを押した時の処理
   const handleChengeClick = () => {
-    console.log('変更！！！');
-    console.log(`itemID%う５雨１５${InCartData.itemId}`);
-    console.log(`cart###${cart}`);
-
+    console.log('edit');
     setEditDaialogOpen(true);
+    console.log('editDaialogOpen', editDaialogOpen);
   };
-
-  useEffect(() => {
-    console.log('cartが変わった');
-  }, [cart]);
 
   return (
     <div>
