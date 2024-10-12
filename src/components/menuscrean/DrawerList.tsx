@@ -34,7 +34,7 @@ const DrawerList = ({ cart, items, options, itemId, cardOpen, setCardOpen, setCa
         >
           ご注文内容の確認
         </Box>
-        <Box sx={{ pb: '50px', zIndex: 1 }}>
+        <Box sx={{ pb: '13.5%', zIndex: 1 }}>
           {cart.map((cartdata) => {
             return (
               <CartItemsCard

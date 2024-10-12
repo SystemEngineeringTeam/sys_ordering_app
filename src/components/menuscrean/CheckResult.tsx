@@ -37,7 +37,11 @@ const CheckResult = ({ cart, setOpenResult }: Props) => {
     <div>
       <Box sx={{ padding: '1%', backgroundColor: 'orange' }}>
         <Box sx={{ padding: '5%', backgroundColor: 'white' }}>
-          <Box sx={{ textAlign: 'center' }}>注文確定後に調理を開始します。</Box>
+          <Box sx={{ textAlign: 'center' }}>
+            注文確定後、
+            <br />
+            支払い待ちリストに追加されます。
+          </Box>
           <Box sx={{ textAlign: 'center' }}>注文を確定します。よろしいですか？</Box>
 
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: '3%' }}>
